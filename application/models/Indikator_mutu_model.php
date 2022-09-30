@@ -71,6 +71,11 @@ class Indikator_mutu_model extends CI_Model
                 $data['tglupdate'] = date('Y-m-d');
                 return $this->db->update($this->_table, $data, array('idtrx' => $idtrx));
         }
+        public function delete_indikator_mutu($idtrx)
+        {
+                return $this->db->where('idtrx', $idtrx)-> delete($this->_table);
+                
+        }
 
         public function getRekap($param = "")
         {
@@ -117,6 +122,7 @@ class Indikator_mutu_model extends CI_Model
                         ->from($this->_table)
                        
                         ->where($param)
+                        ->order_by('tanggal','asc')
                         ->get();
                         return $query;
 

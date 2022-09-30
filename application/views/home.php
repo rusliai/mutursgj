@@ -1,324 +1,327 @@
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="<?php echo base_url()?>assets/img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+<style>
+  .word {
+    word-wrap: break-word;
+  }
+</style>
+<?php
+?>
+<!-- <div class="row">
+  <div class="col-xl-12 col-lg-12">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
+        <h6 class="m-0 font-weight-bold text-white">Grafik Capaian Perbulan</h6>
+        <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header">Dropdown Header:</div>
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="chart" class="chart-area">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <!-- Area Chart -->
+  <div class="col-xl-12 col-lg-12">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
+        <div class="col">
+          <div class="form-group row m-1">
+            <h5 class="m-0 font-weight-bold text-white">Grafik Capaian Perindikator <span id="titleGrafik"></span></h5>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group row m-1">
+            <?php
+            $option =  "<select id='list_unit' class='form-control form-control-sm col-sm-3'> ";
+            foreach ($unit as $row) {
+              $option .= "<option value='" . $row['idunit'] . "'>" . $row['nama_unit'] . "</option>";
+            }
+            $option .= "</select>";
+            echo $option;
+            ?>
+            &nbsp;
+            <?php echo input_select_bulan("list_bulan", date('m')) ?>
+            &nbsp;
+            <?php echo input_select_tahun("list_tahun", date('Y')) ?>
+            &nbsp;
+            <button id="btnTampilRekap" onclick="tampilDetail()" type="button" class=" btn btn-sm btn-primary">
+              <i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <th style="width: 5%;"><a href="#">ID</th>
+              <th style="width: 10%;"><a href="#">Standar Pencapaian</th>
+              <th>Grafik Harian</th>
+            </thead>
+            <tbody id="rowDetail">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+  var base_url = "<?php echo base_url() ?>";
+  var today = new Date();
+  var hari = String(today.getDate()).padStart(2, '0');
+  var bulan = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var tahun = today.getFullYear();
+  const titleGrafik = document.getElementById('titleGrafik');
+  const inputUnit = document.getElementById('list_unit');
+  const inputBulan = document.getElementById('list_bulan');
+  const inputTahun = document.getElementById('list_tahun');
+  var getDaysInMonth = function(month, year) {
+    return new Date(year, month, 0).getDate();
+  };
+  let jumlah_hari = getDaysInMonth(bulan, tahun);
+  // tampilRekap();
+  // setTimeout(() => {
+  //   tampilDetail();
+  // }, 100);
+  function toMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+    return date.toLocaleString('en-US', {
+      month: 'long',
+    });
+  }
+  function tampilRekap() {
+    let param = `tahun=${tahun}&bulan=${bulan}&tipe=perunit&idunit=${inputUnit.value}`;
+    xhr.onreadystatechange = callback;
+    xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+    xhr.send();
+    function callback() {
+      if (this.readyState == 4 && this.status == 200) {
+        let data = JSON.parse(this.responseText)
+        var namaindikator = [];
+        var standar = [];
+        var capaian = [];
+        data.forEach(e => {
+          namaindikator.push(e.nama_indikator.split(" "));
+          namaindikator.push(e.nama_indikator);
+          let persen = (e.total_numerator / e.total_denominator) * 100;
+          persen = parseFloat(persen).toFixed(2);
+          standar.push(e.standar)
+          capaian.push(persen)
+        });
+        var options = {
+          chart: {
+            type: 'bar',
+            height: 480
+          },
+          plotOptions: {
+            bar: {
+              horizontal: true,
+              dataLabels: {
+                position: 'bottom',
+              },
+            }
+          },
+          colors: ["#007bff"],
+          stroke: {
+            show: true,
+            width: 1,
+          },
+          tooltip: {
+            shared: true,
+            intersect: false
+          },
+          xaxis: {
+            categories: namaindikator,
+            labels: {
+              show: true,
+              formatter: function(value) {
+                return value + "%";
+              }
+            },
+          },
+          yaxis: {
+            min: 0,
+            max: 100,
+            tickAmount: 5,
+            labels: {
+              show: false,
+              // formatter: function(value) {
+              //   // return value + "%";
+              // }
+            }
+          },
+          series: [{
+              name: "Capaian",
+              data: capaian,
+            },
+            // {
+            //   name: "Standar",
+            //   data: standar
+            // },
+          ],
+          dataLabels: {
+            enabled: false,
+            style: {
+              fontSize: '12px',
+              fontWeight: 'bold',
+            },
+            formatter: function(value) {
+              return value + "%";
+            },
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+              colors: ['#000000']
+            },
+            formatter: function(val, opt) {
+              return opt.w.globals.labels[opt.dataPointIndex] + " :  " + val + "%"
+            },
+            offsetX: 0,
+            dropShadow: {
+              enabled: false
+            }
+          },
+        }
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      }
+    }
+  }
+  function tampilDetail() {
+    const rowDetail = document.getElementById('rowDetail');
+    let param = `tahun=${inputTahun.value}&bulan=${inputBulan.value}&tipe=perunit&idunit=${inputUnit.value}`;
+    xhr.onreadystatechange = callback;
+    xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+    xhr.send();
+    function callback() {
+      if (this.readyState == 4 && this.status == 200) {
+        titleGrafik.innerHTML = `${toMonthName(bulan)} ${tahun}`;
+        let data = JSON.parse(this.responseText)
+        let html = '';
+        data.forEach(e => {
+          html += `<tr>
+                      <td> ${e.idindikator}</td>
+                      <td> <a href="#" style="font-size: 3rem;font-weight: bold;font-family: arial;"> ${parseFloat(e.standar).toFixed(2)}%</a></td>
+                      <td id="${e.idindikator}"> 
+                     </td>
+                    </tr>`;
+        });
+        rowDetail.innerHTML = html;
+        // looping data kemudian assign dalam tanggal;
+        for (let x = 0; x < data.length; x++) {
+          let dataTanggal = [];
+          let dataIndikator = [];
+          let dataNumerator = [];
+          let dataDenominator = [];
+          let item = data[x];
+          for (let y = 1; y <= jumlah_hari;) {
+            dataTanggal.push(y);
+            let persen = 0
+            let num_numerator = 0;
+            let num_denominator = 0;
+            item.detail.forEach(e => {
+              const date = new Date(e.tanggal);
+              const date_num = date.getDate();
+              if (date_num == y) {
+                persen = (e.numerator / e.denominator) * 100;
+                persen = parseFloat(persen).toFixed(2);
+                num_numerator = e.numerator;
+                num_denominator = e.denominator;
+                if (isNaN(persen)) {
+                  persen = 0;
+                  num_numerator = 0;
+                  num_denominator = 0;
+                }
+              }
+            })
+            dataIndikator.push(persen);
+            dataNumerator.push(num_numerator)
+            dataDenominator.push(num_denominator)
+            y++
+          }
+          var options = {
+            series: [{
+              name: "X",
+              data: dataIndikator,
+              numerator: dataNumerator,
+              denominator: dataDenominator
+            }],
+            tooltip: {
+              custom: function({
+                series,
+                seriesIndex,
+                dataPointIndex,
+                w
+              }) {
+                let angkaNum = w.globals.initialSeries[seriesIndex].numerator[dataPointIndex];
+                let angkaDenom = w.globals.initialSeries[seriesIndex].denominator[dataPointIndex];
+                let angkaCapaian = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                return `<div class="card card-sm  text-white bg-dark " >
+                <div class="card-header">
+               <span>${item.nama_indikator} <span>
+                </div>
+                          <div class="card-body">
+                          ${item.numerator} : <b> ${angkaNum} </b>  <br>
+                          ${item.denominator} :<b> ${angkaDenom}  </b> <br>
+                          Standar :<b> ${item.standar} %</b> <br>
+                          Pencapaian :<b> ${angkaCapaian} %</b> <br>
+                          </div>
+                          </div>`
+              },
+            },
+            chart: {
+              type: 'area',
+              height: 350,
+              zoom: {
+                enabled: false
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'straight'
+            },
+            title: {
+              text: item.nama_indikator,
+              align: 'left'
+            },
+            subtitle: {
+              text: '',
+              align: 'left'
+            },
+            labels: dataTanggal,
+            xaxis: {
+              type: 'category',
+            },
+            yaxis: {
+              opposite: true
+            },
+            legend: {
+              horizontalAlign: 'left'
+            }
+          };
+          var chart = new ApexCharts(document.getElementById(`${item.idindikator}`), options);
+          chart.render();
+        }
+      }
+    }
+  }
+</script>

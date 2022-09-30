@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover table-sm" id="tabelDokter" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -126,7 +126,10 @@
     const formStatus = document.getElementById('formStatus');
     const bntNew = document.getElementById('bntNew');
 
-
+    fill_spesialis();
+    $('#tabelDokter').DataTable();
+    
+    
     function fill_spesialis() {
         xhr.open("GET", base_url + "dokter/get_list_spesialis/");
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -165,12 +168,13 @@
             type: "GET",
             url: base_url + "dokter/get_detail_dokter/" + id,
             success: function(data) {
-                fill_spesialis();
+                // fill_spesialis();
                 let dokter = JSON.parse(data);
                 formStatus.value = "edit";
                 iddokter.value = dokter.iddokter;
                 namaDokter.value = dokter.nama_dokter;
                 spesialis.value = dokter.spesialis
+                console.log(dokter.aktif);
                 //isi status checkbox aktif
                 if (dokter.aktif == true) {
                     aktif.checked = true;

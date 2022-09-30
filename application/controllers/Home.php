@@ -22,20 +22,16 @@ class Home extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->library('template');
-		// $this->load->library('curl');
-		// $this->load->helper('pirantisystem');
-		// // untuk amengaktifkan librari serversent
-		// // $this->load->library('server_sent');
-		// // mengaktifkan class encrypt bawaan CI lama
-		// $this->load->library('encrypt');
-		// // mengkatifkan library encrypt ssl
-		// $this->load->library('encryption');
+		
+		$this->load->model('master/unit_model','unit');
 	}
 
 	public function index()
 	{
 
         $data['judul'] = "Selamat Datang";
+        $data['unit'] = $this->unit->get_unit_all();
+
      	$this->template->display('home', $data);
 	}
 }

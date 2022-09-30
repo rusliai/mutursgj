@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover table-sm" id="tableUnit" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -89,6 +89,8 @@
         let aktif = $('#check_id').is(':checked');
         let formStatus = $('#formStatus');
 
+
+        $('#tableUnit').DataTable();
         $('#btnEdit').click(function() {
             let id_unit = $(this).attr('data-id');
             

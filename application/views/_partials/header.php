@@ -15,7 +15,10 @@
       <!-- Page level plugins -->
       <script src="<?php echo base_url() ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
+
+
+    <script src="<?php echo base_url() ?>node_modules/apexcharts/dist/apexcharts.min.js"></script>
+     <link rel="stylesheet" href="<?php echo base_url() ?>node_modules/apexcharts/dist/apexcharts.css">
 
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/jquery-ui-1.13.1/jquery-ui.min.css">
 

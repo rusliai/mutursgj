@@ -38,7 +38,9 @@ class Menu_model extends CI_Model
                                     user_group_detail.idmenu,
                                     user_group_detail.idgroup,
                                     master_menu.nama_menu,
-                                    master_menu.url ')
+                                    master_menu.url,
+                                    master_menu.icon,
+                                     ')
             ->from('user_group_detail')
             ->join('master_menu', ' user_group_detail.idmenu = master_menu.idmenu','left')
             ->where($filter_parent)
@@ -68,6 +70,7 @@ class Menu_model extends CI_Model
             $data[] = array(
                 "id_menu" => $item->idmenu,
                 "nama_menu" => $item->nama_menu,
+                "icon" => $item->icon,
                 "submenu" => $child
             );
             

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2022 at 07:06 PM
+-- Generation Time: Jul 26, 2022 at 05:08 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -21,6 +21,43 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbmutursgj`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_indikator`
+--
+
+CREATE TABLE `group_indikator` (
+  `idindikator` varchar(10) NOT NULL,
+  `idunit` varchar(10) NOT NULL,
+  `aktif` tinyint(1) NOT NULL,
+  `nourut` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `group_indikator`
+--
+
+INSERT INTO `group_indikator` (`idindikator`, `idunit`, `aktif`, `nourut`) VALUES
+('IN047', 'UN013', 0, 27),
+('IN048', 'UN013', 0, 28),
+('IN030', 'UN013', 0, 29),
+('IN058', 'UN013', 0, 30),
+('IN032', 'UN013', 0, 31),
+('IN014', 'UN013', 0, 32),
+('IN081', 'UN003', 0, 33),
+('IN046', 'UN003', 0, 34),
+('IN023', 'UN005', 0, 35),
+('IN082', 'UN005', 0, 36),
+('IN012', 'UN005', 0, 37),
+('IN011', 'UN005', 0, 38),
+('IN033', 'UN005', 0, 39),
+('IN028', 'UN005', 0, 40),
+('IN019', 'UN005', 0, 41),
+('IN030', 'UN005', 0, 42),
+('IN062', 'UN005', 0, 43),
+('IN029', 'UN005', 0, 44);
 
 -- --------------------------------------------------------
 
@@ -47,31 +84,45 @@ CREATE TABLE `indikator_mutu` (
 --
 
 INSERT INTO `indikator_mutu` (`idtrx`, `iduser`, `idindikator`, `iddokter`, `idunit`, `tanggal`, `numerator`, `denominator`, `catatan`, `tglupdate`, `tglbuat`) VALUES
-(61, 1, 'IN001', 'DR013', '001', '2022-07-02', 80, 100, '', '2022-07-02', '2022-07-02'),
-(62, 1, 'IN008', 'DR015', '001', '2022-07-31', 0, 100, '', '2022-07-03', '2022-07-03'),
-(63, 1, 'IN008', 'DR015', '001', '2022-07-12', 0, 100, '', '2022-07-03', '2022-07-03'),
-(64, 1, 'IN001', '', '001', '2022-07-02', 10, 100, '', '2022-07-02', '2022-07-02'),
-(65, 1, 'IN014', 'DR015', '001', '2022-02-02', 9, 10, '', '2022-07-02', '2022-07-02'),
-(66, 1, 'IN001', 'DR013', '001', '2022-07-03', 10, 20, '', '2022-07-03', '2022-07-03'),
-(67, 1, 'IN002', '', '001', '2022-07-03', 0, 30, '', '2022-07-03', '2022-07-03'),
-(68, 1, 'IN005', '', '001', '2022-07-03', 7, 10, '', '2022-07-03', '2022-07-03'),
-(69, 1, 'IN009', '', '001', '2022-07-03', 20, 28, '', '2022-07-03', '2022-07-03'),
-(70, 1, 'IN005', '', '001', '2022-07-28', 20, 30, '', '2022-07-03', '2022-07-03'),
-(71, 1, 'IN009', '', '001', '2022-07-12', 20, 30, '', '2022-07-03', '2022-07-03'),
-(72, 1, 'IN005', '', '001', '2022-07-18', 2, 10, '', '2022-07-03', '2022-07-03'),
-(73, 1, 'IN001', '', '001', '2022-07-23', 50, 100, '', '2022-07-03', '2022-07-03'),
-(74, 1, 'IN001', '', '001', '2022-07-11', 8, 30, '', '2022-07-03', '2022-07-03'),
-(75, 1, 'IN008', 'DR015', '001', '2022-07-23', 10, 32, '', '2022-07-03', '2022-07-03'),
-(76, 1, 'IN002', '', '001', '2022-07-21', 2, 20, '', '2022-07-03', '2022-07-03'),
-(77, 1, 'IN008', 'DR015', '001', '2022-07-19', 0, 1, '', '2022-07-03', '2022-07-03'),
-(78, 1, 'IN008', 'DR015', '001', '2022-07-06', 1, 30, '', '2022-07-03', '2022-07-03'),
-(79, 1, 'IN002', 'DR013', '001', '2022-09-03', 25, 25, '', '2022-07-03', '2022-07-03'),
-(80, 1, 'IN001', '', '001', '2022-07-03', 0, 0, '', '2022-07-04', '2022-07-04'),
-(81, 1, 'IN001', '', '001', '2022-07-04', 0, 0, '', '2022-07-04', '2022-07-04'),
-(82, 1, 'IN005', '', '001', '2022-07-04', 0, 0, '', '2022-07-04', '2022-07-04'),
-(83, 1, 'IN005', '', '001', '2022-07-05', 0, 0, '', '2022-07-04', '2022-07-04'),
-(84, 2, 'IN001', '', '002', '2022-07-05', 10, 100, '', '2022-07-05', '2022-07-05'),
-(85, 2, 'IN001', '', '002', '2022-07-10', 11, 60, '', '2022-07-05', '2022-07-05');
+(90, 4, 'IN030', '', 'UN013', '2022-07-14', 8, 10, '', '2022-07-17', '2022-07-17'),
+(91, 4, 'IN047', '', 'UN013', '2022-07-15', 30, 120, '', '2022-07-15', '2022-07-15'),
+(92, 1, 'IN081', '', 'UN003', '2022-07-15', 9, 10, '', '2022-07-17', '2022-07-17'),
+(93, 4, 'IN058', '', 'UN013', '2022-07-15', 10, 50, '', '2022-07-15', '2022-07-15'),
+(94, 4, 'IN014', '', 'UN013', '2022-07-15', 2, 10, '', '2022-07-15', '2022-07-15'),
+(95, 4, 'IN032', '', 'UN013', '2022-07-15', 80, 120, '', '2022-07-15', '2022-07-15'),
+(96, 1, 'IN046', '', 'UN003', '2022-07-17', 10, 15, '', '2022-07-17', '2022-07-17'),
+(97, 5, 'IN033', '', 'UN005', '2022-07-17', 2, 5, '', '2022-07-17', '2022-07-17'),
+(98, 5, 'IN082', '', 'UN005', '2022-07-17', 5, 10, '', '2022-07-17', '2022-07-17'),
+(99, 5, 'IN028', '', 'UN005', '2022-07-17', 20, 70, '', '2022-07-17', '2022-07-17'),
+(100, 5, 'IN019', '', 'UN005', '2022-07-17', 20, 30, '', '2022-07-17', '2022-07-17'),
+(101, 5, 'IN062', '', 'UN005', '2022-07-17', 2, 30, '', '2022-07-17', '2022-07-17'),
+(102, 1, 'IN046', '', 'UN003', '2022-07-29', 19, 25, '', '2022-07-17', '2022-07-17'),
+(103, 1, 'IN046', '', 'UN003', '2022-07-18', 11, 21, '', '2022-07-17', '2022-07-17'),
+(104, 1, 'IN046', '', 'UN003', '2022-07-19', 5, 6, '', '2022-07-17', '2022-07-17'),
+(105, 1, 'IN046', '', 'UN003', '2022-07-01', 5, 7, '', '2022-07-17', '2022-07-17'),
+(106, 1, 'IN046', '', 'UN003', '2022-07-02', 8, 11, '', '2022-07-17', '2022-07-17'),
+(107, 1, 'IN046', '', 'UN003', '2022-07-03', 3, 5, '', '2022-07-17', '2022-07-17'),
+(108, 1, 'IN046', '', 'UN003', '2022-07-04', 12, 12, '', '2022-07-17', '2022-07-17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `instansi`
+--
+
+CREATE TABLE `instansi` (
+  `idinstansi` varchar(5) NOT NULL,
+  `nama_instansi` varchar(50) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `telepon` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `instansi`
+--
+
+INSERT INTO `instansi` (`idinstansi`, `nama_instansi`, `alamat`, `telepon`) VALUES
+('RSGJ', 'RS GRAHA JUANDA', 'Jl. Ir. H. Juanda No.326, RT.001/RW.021, Sasak Juanda, Kec. Bekasi Tim., Kota Bks, Jawa Barat 17133', '(021) 8811832');
 
 -- --------------------------------------------------------
 
@@ -152,28 +203,102 @@ CREATE TABLE `master_indikator` (
 --
 
 INSERT INTO `master_indikator` (`idindikator`, `nama_indikator`, `aktif`, `numerator`, `denominator`, `target_capaian`, `standar`) VALUES
-('IN001', 'KEJADIAN REAKSI TRANSFUSI ', 1, 'Jumlah kasus reaksi transfusi darah per hari ', 'Jumlah total kasus pemasangan transfusi darah (kantong darah) dalam hari tersebu', '>', 70),
-('IN002', 'KETERLAMBATAN WAKTU TINDAKAN HEMODIALISA ', 1, 'Jumlah Keterlambatan waktu tindakan hemodialisa ', 'Jumlah seluruh pasien hemodialisa dalam hari tersebut ', '', 80),
-('IN003', 'INSIDEN KESALAHAN SETTING PROGRAM HEMODIALISA ', 1, 'Jumlah Keterlambatan waktu tindakan hemodialisa ', 'Jumlah seluruh pasien hemodialisa dalam hari tersebut ', '', 80),
-('IN004', ' INSIDEN KETIDAKTEPATAN INSERSI VENA DAN ARTERI ', 1, 'Jumlah ketidaktepatan insersi vena dan arteri', 'Jumlah total ketidaktepatan insersi vena dan arteri pada hari tersebut ', '', 0),
-('IN005', ' KEPATUHAN IDENTITAS PASIEN ', 1, 'Jumlah Kesalahan setting program hemodialisa ', 'Jumlah total kesalahan setting program hemodialisa dalam hari tersebut ', '>', 20),
-('IN006', 'Kematian Ibu Bersalin', 0, 'Jumlah kematian ibu bersalin pada hari tersebut.', 'Jumlah ibu bersalin pada hari itu ', '<', 0),
-('IN007', 'Kematian ibu melahirkan karena eklampsi', 0, 'Jumlah ibu meninggal karena eklampsi ', 'Jumlah ibu dengan eklampsia pada hari tersebut', '<', 0),
-('IN008', 'Kematian ibu melahirkan karena perdarahan', 0, 'Jumlah ibu melahirkan yang meninggal karena perdarahan. ', 'Jumlah ibu melahirkan dengan perdarahan pada hari tersebut. ', '<', 0),
-('IN009', 'Keterlambatan operasi sectio caesarea', 0, 'Jumlah ibu yang mengalami keterlambatan sectio caesarea pada hari tersebut.', 'Jumlah ibu yang mengalami sectio caesarea pada bulan tersebut', '', 0),
-('IN010', 'Keterlambatan penyediaan darah', 0, 'Jumlah ibu hamil/bersalin/nifas yang mengalami keterlambatan penyediaan darah pada hari tersebut', 'Jumlah ibu hamil / bersalin / nifas yang membutuhkan transfusi darah pada hari tersebu', '', 0),
-('IN011', 'Insiden Keamanan Obat Yang Perlu Diwaspadai', 0, 'Insiden kejadian/kesalahan yang terkait dengan keamanan obatobatan yang perlu diwaspadai', 'Jumlah total insiden/kejadian kesalahan yang terkait dengan keamananobat-obatan yang perlu diwaspadai dalam bulan tersebut', '', 0),
-('IN012', 'Keterlambatan Waktu Penerimaan Obat Racikan', 0, 'Jumlah pasien rawat jalan yang menerima obat racikan ≥ 60 menit', 'Jumlah pasien rawat jalan yang menerima resep obat racikan dalam bulan tersebut', '', 0),
-('IN013', 'Keterlambatan Waktu Penerimaan Obat Non Racikan', 0, 'Jumlah pasien rawat jalan yang menerima obat non racikan ≥ 20 menit', 'Jumlah pasien rawat jalan yang menerima resep obat non racikan dalam bulan tersebut', '', 0),
-('IN014', 'Kepatuhan Identifikasi Pasien', 0, 'Jumlah proses yang telah dilakukan identifikasi secara benar', 'Jumlah proses pelayanan yang diobservasi', '', 0),
-('IN015', 'Kepatuhan Penggunaan Formularium Nasional Bagi RS Provider BPJS', 0, 'Jumlah R/ yang patuh dengan fromularium nasional', 'Jumlah seluruh R/', '', 0),
-('IN016', 'Indikator Mutu Prioritas SKP TB', 0, 'Insiden Keamanan Obat yang Perlu Diwaspadai Pada Pasien TB', 'Jumlah Pasien', '', 0),
-('IN017', 'MUTU KONSULTASI DOKTER SPESIALIS DI RAWAT JALAN', 0, 'WAKTU KONSULTASI DOKTER SPESIALIS DI RAWAT JALAN DALAM 6 MENIT', 'JUMLAH PASIEN', '', 0),
-('IN018', 'MUTU WAKTU KETERLAMBATAN DOKTER SPESIALIS', 0, 'JUMLAH DOKTER SPESIALIS YANG TERLAMBAT PRAKTEK', 'JUMLAH DOKTER SPESIALIS YANG PRAKTEK PADA HARI ITU', '', 0),
-('IN019', 'MUTU RAWAT JALAN WAKTU TUNGGU RAWAT JALAN PER DOKTER SPESIALIS', 0, 'WAKTU TUNGGU RAWAT JALAN>60 MENIT', 'JUMLAH PASIEN', '', 0),
-('IN020', 'Tidak terisinya angket kepuasan pasien rawat inap', 0, 'Jumlah angket kepuasan yang tidak kembali atau tidak terisi', 'Jumlah angket kepuasan yang dibagikan dalam satu hari (20 angket)', '', 0),
-('IN021', 'Kecepatan waktu tanggap komplain (INM)', 0, 'Jumlah komplain yang ditanggapi dan ditindaklanjuti sesuai waktu yang ditetapkan berdasarkan grading', 'Jumlah komplain yang disurvei', '', 0),
-('IN022', 'Kepuasan pasien (INM)', 0, 'Jumlah kumulatif hasil penilaian kepuasan dari pasien yang disurvei (dalam prosen)', 'Jumlah total pasien yang disurvei (n minimal 50)', '', 0);
+('IN001', 'Adanya kesalahan hasil ekspertise radiologi pada kontrak klinis radiologi', 1, 'Kesalahan hasil ekspertise radiologi yang dirujuk', 'Jumlah seluruh pemeriksaan radiologi yang dirujuk pada hari itu', '', 0),
+('IN002', 'Angka kasus kejadian kehilangan barang dalam 1 bulan', 1, 'Angka kasus kejadian kehilangan dalam 1 bulan', 'Selalu di isi 30 (selama 1 bulan asumsi 30 hari harus tidak ada kejadian kehilangan)', '', 0),
+('IN003', 'Angka kematian ibu bersalin', 1, 'Jumlah ibu bersalin yang meninggal', 'Jumlah ibu bersalin hari itu', '', 0),
+('IN004', 'Angka sisa makanan pasien RI', 1, 'Jumlah pasien yang terdapat sisa makanan', 'Jumlah seluruh pasien yang dirawat inap', '', 0),
+('IN005', 'Bayi baru lahir yang tidak mendapatkan ASI Eksklusif selama rawat inap', 1, 'Jumlah bayi baru lahir yang tidak mendapat ASI eksklusif selama masa rawat inap', 'Jumlah seluruh bayi baru lahir dalam satu hari', '', 0),
+('IN006', 'Drop out pengobatan pasien TB', 1, 'Jumlah semua pasien yang pengobatannya drop out', 'Jumlah seluruh pasien tuberkulosis yang ditangani dalam hari tersebut', '', 0),
+('IN007', 'Emergency respon time (waktu tanggap pelayanan gawat darurat ?5 menit)', 1, 'Jumlah pasien gawat, darurat, dan gawat darurat yang mendapatkan pelayanan kegawat daruratannya dalam waktu ? 5 menit', 'Jumlah seluruh pasien gawat, darurat, gawat darurat yang mendapatkan pelayanan kegawatdaruratan di rumah sakit', '', 0),
+('IN008', 'Hasil laboratorium yang diverifikasi oleh dokter spesialis PK', 1, 'Jumlah  pemeriksaan laboratorium  yang diverifikasi oleh dokter spesialis PK', 'Jumlah seluruh pemeriksaan laboratorium pada hari itu', '', 0),
+('IN009', 'Infeksi aliran darah primer (IADP)', 1, 'Jumlah kasus infeksi aliran darah primer karena pemasangan intravaskuler kateter per hari', 'Jumlah kasus pemasangan intravaskuler kateter dalam bulan tersebut', '', 0),
+('IN010', 'Infeksi daerah operasi (IDO)', 1, 'Jumlah pasien yang mengalami infeksi pasca operasi dalam satu hari', 'Jumlah seluruh pasien yang di operasi di rumah sakit  dalam satu bulan', '', 0),
+('IN011', 'Infeksi luka infus (ILI/Plebitis)', 1, 'Jumlah kasus infeksi luka infus per hari', 'Jumlah kasus pemasangan infus dalam bulan tersebut', '', 0),
+('IN012', 'Infeksi saluran kemih (ISK) ', 1, 'Jumlah kasus Infeksi karena pemasangan douwer catheter dalam satu bulan', 'Jumlah hari pemasangan kateter dalam bulan tersebut', '', 0),
+('IN013', 'Insiden keamanan obat TB yang perlu diwaspadai ', 1, 'Insiden kejadian pengobatan TB', 'Jumlah semua pasien TB pada hari itu', '', 0),
+('IN014', 'Insiden keamanan obat yang perlu diwaspadai', 1, 'Insiden kejadian/kesalahan yang terkait dengan kemanan obat-obatan yang perlu diwaspadai', 'Jumlah total insiden/kejadian kesalahan yang terkait dengan keamanan obat ? obatan yang perlu diwaspadai dalam bulan tersebut', '<', 0),
+('IN015', 'Insiden kesalahan setting program hemodialisa', 1, 'Jumlah kesalahan seting program hemodialisa ', 'Jumlah total kesalahan setting program hemodialisa dalam bulan tersebut', '', 0),
+('IN016', 'Insiden Ketidaktepatan Insersi Vena dan Arteri pada pasien hemodialisa', 1, 'Jumlah ketidaktepatan insersi vena dan arteri', 'Jumlah total ketidaktepatan insersi vena dan arteri pada hari tersebut', '', 0),
+('IN017', 'Insiden tertinggalnya instrumen/kasa/benda lain saat operasi', 1, 'Jumlah tertinggalnya instrumen/kasa/benda lain saat operasi', 'Total kejadian tertinggalnya instrumen/kasa/benda lain saat operasi per bulan', '', 0),
+('IN018', 'Kecepatan respon terhadap komplain (KRK)', 1, 'KKM + KKK + KKH (%)', 'Nilai denumerator 3', '', 0),
+('IN019', 'Kejadian dekubitus selama masa perawatan', 1, 'Jumlah kasus dekubitus  per hari', 'Jumlah pasien tirah baring pada bulan tersebut', '>', 80),
+('IN020', 'Kejadian reaksi transfusi', 1, 'Jumlah kasus reaksi transfusi darah per hari', 'Jumlah total kasus pemasangan transfusi darah (kantong darah) dalam bulan tersebut', '', 0),
+('IN021', 'Kejadian tidak dilakukan inisiasi menyusu dini (IMD) pada bayi baru lahir', 1, 'Jumlah bayi baru lahir yang tidak dilakukan IMD', 'Jumlah seluruh bayi baru lahir yang dilakukan IMD pada bulan tersebut', '', 0),
+('IN022', 'Kejadian tidak dilakukan inisiasi menyusu dini (IMD) pada bayi baru lahir 2', 1, 'Jumlah kematian bayi', 'Jumlah bayi hidup hari itu', '', 0),
+('IN023', 'Kelengkapan assesmen medis  pasien TB dalam waktu 24 jam setelah pasien masuk rawat inap', 1, 'Jumlah asessmen lengkap yang dilakukan oleh tenaga medis dalam waktu 24 jam setelah pasien masuk rawat inap', 'Jumlah total pasien yang masuk rawat inap dalam waktu 24 jam', '', 0),
+('IN024', 'Kelengkapan berkas TB 09 pada pasien TB yang dirujuk', 1, 'Jumlah semua pasien TB yang dirujuk yang melampirkan form TB 09', 'Jumlah seluruh pasien tuberkulosis yang dirujuk', '', 0),
+('IN025', 'Kelengkapan pengisian form PRMRJ', 1, 'Jumlah kelengkapan form PRMRJ', 'Jumlah seluruh berkas pasien yang diberi form PRMRJ saat itu', '', 0),
+('IN026', 'Kematian ibu melahirkan karena eklampsi', 1, 'Jumlah ibu meninggal karena eklampsia', 'Jumlah ibu dengan eklampsia', '', 0),
+('IN027', 'Kematian ibu melahirkan karena perdarahan', 1, 'Jumlah ibu melahirkan yang meninggal karena perdarahan', 'Jumlah ibu melahirkan dengan perdarahan pada hari tersebut', '', 0),
+('IN028', 'Kepatuhan cuci tangan', 1, 'Edukasi Hand Hygiene terhadap pasien baru rawat inap dan HD dalam satu bulan', 'Jumlah pasien baru dirawat inap dan HD di RS dalam satu bulan', '', 0),
+('IN029', 'Kepatuhan dokter DPJP visite', 1, 'Jumlah visite dokter spesialis paru pada hari itu', 'Jumlah total pasien paru', '', 0),
+('IN030', 'Kepatuhan Identifikasi Pasien', 1, 'Jumlah proses yang telah dilakukan identifikasi secara benar', 'Jumlah proses pelayanan yang di observasi', '>', 80),
+('IN031', 'Kepatuhan pembayaran sewa lahan', 1, 'Kepatuhan pembayaran sewa lahan', '100', '', 0),
+('IN032', 'Kepatuhan penggunaan formularium nasional bagi RS provider BPJS', 1, 'Jumlah R/ yang patuh dengan formularium nasional', 'Jumlah seluruh R/', '>', 80),
+('IN033', 'Kepatuhan Upaya Pencegahan Resiko Cedera Akibat Pasien Jatuh Pada Pasien Rawat Inap', 1, 'Jumlah kasus yang mendapatkan ketiga upaya pencegahan pasien jatuh', 'Jumlah kasus semua pasien yang beresiko jatuh ', '', 0),
+('IN034', 'Kepuasan Pegawai ', 1, 'Jumlah staf yang menyatakan puas', 'Jumlah seluruh staf', '', 0),
+('IN035', 'Kerusakan sample darah', 1, 'Jumlah kerusakan sample darah ', 'Jumlah sample darah pada hari tersebut', '', 0),
+('IN036', 'Kesalahan cetak film pada pemeriksaan radiologi', 1, 'Jumlah kesalahan cetak film pemeriksaan radiologi', 'Jumlah seluruh pemeriksaan radiologi dalam bulan tersebut', '', 0),
+('IN037', 'Kesalahan diit pasien', 1, 'Jumlah kejadian kesalahan jenis diit makanan pasien', 'Jumlah porsi makanan diit dalam hari itu', '', 0),
+('IN038', 'Kesalahan lokasi operasi', 1, 'Jumlah insiden kesalahan lokasi operasi pada saat pembedahan', 'Jumlah insiden kesalahan lokasi operasi dalam satu bulan tersebut', '', 0),
+('IN039', 'Kesalahan posisi pasien dalam pemeriksaan radiologi', 1, 'Jumlah kesalahan posisi pasien dalam pemeriksaan radiologi', 'Jumlah seluruh pemeriksaan radiologi dalam hari itu', '', 0),
+('IN040', 'Kesalahan Prosedur Operasi', 1, 'Jumlah insiden salah prosedur operasi pada pasien', 'Jumlah insiden salah prosedur operasi pada pasien dalam satu bulan tersebut', '', 0),
+('IN041', 'Ketepatan waktu pelaporan SITT ke Dinas Kesehatan Kota Bekasi', 1, 'Jumlah laporan triwulan yang terkirim ke Dinas Kesehatan sebelum tanggal 10', 'Jumlah Laporan triwulan  yang harus terkirim pada tanggal 10 bulan berikutnya ', '', 0),
+('IN042', 'Keterlamabatan operasi SC > 30 menit', 1, 'Jumlah tindakan SC yang > 30 menit', 'Jumlah seluruh persalinan SC pada hari itu', '', 0),
+('IN043', 'Keterlambatan pelayanan ambulans di rumah sakit', 1, 'Jumlah keterlambatan pelayanan ambulans', 'Jumlah seluruh permintaan ambulan dalam bulan tersebut', '', 0),
+('IN044', 'Keterlambatan penyediaan darah > 60 menit', 1, 'Jumlah ibu hamil/bersalin/nifas yang mengalami keterlambatan penyediaan darah', 'Jumlah ibu hamil / bersalin / nifas yang membutuhkan transfusi darah pada bulan tersebut.', '', 0),
+('IN045', 'Keterlambatan respon time genset', 1, 'Jumlah kejadian genset menyala dalam wakyu > 10 detik pada saat listrik padam', 'Jumlah seluruh kejadian pemadaman listrik dalam bulan tersebut', '', 0),
+('IN046', 'Keterlambatan waktu penanganan kerusakan hardware/jaringan', 1, 'Jumlah keterlambatan respon time petugas IT dalam menanggapi laporan kerusakan hardware/jaringan', 'Jumlah seluruh laporan kerusakan hardware/jaringan pada hari tersebut', '', 0),
+('IN047', 'Keterlambatan waktu penerimaan obat non racikan', 1, 'Jumlah pasien rawat jalan yang menerima obat non racikan > 20 menit', 'Jumlah pasien rawat jalan yang menerima obat non racikan dalam hari tersebut', '>', 70),
+('IN048', 'Keterlambatan waktu penerimaan obat racikan', 1, 'Jumlah pasien rawat jalan yang menerima obat racikan ? 60 menit', 'Jumlah pasien rawat jalan yang menerima resep obat racikan dalam hari tersebut', '>', 65),
+('IN049', 'Keterlambatan waktu tindakan hemodialisa', 1, 'Jumlah keterlambatan waktu tindakan hemodialisa', 'Jumlah seluruh pasien hemodialisa dalam hari tersebut', '', 0),
+('IN050', 'Ketidak Lengkapan catatan medis pasien TB', 1, 'Jumlah catatan rekam medis yang belum lengkap dan benar per hari', 'Jumlah catatan rekam medis dalam bulan tersebut', '', 0),
+('IN051', 'Ketidaklengkapan assessment pre anestesi', 1, 'Jumlah ketidaklengkapan laporan anestesi', 'Jumlah total pasien operasi dengan anestesi pada bulan tersebut (sesuai data dari IKO)', '', 0),
+('IN052', 'Ketidaklengkapan dokumen pendukung penagihan', 1, 'Jumlah ketidaklengkapan dokumen pendukung penagihan', 'Jumlah seluruh tagihan atas pelayanan rumah sakit yang terkirim dalam bulan tersebut', '', 0),
+('IN053', 'Ketidaklengkapan informed consent', 1, 'Informed consent  tindakan bedah yang tidak lengkap perhari', 'Jumlah tindakan bedah dari seluruh pasien dalam bulan tersebut ', '', 0),
+('IN054', 'Ketidaklengkapan laporan anestesi', 1, 'Jumlah ketidaklengkapan laporan anestesi', 'Jumlah total pasien operasi dengan anestesi pada bulan tersebut (sesuai data dari IKO)', '', 0),
+('IN055', 'Ketidaklengkapan pengisian informed conset', 1, 'Semua informed consent  yang tidak terisi lengkap', 'Jumlah informed consent yang diperiksa hari itu', '', 0),
+('IN056', 'Ketidaklengkapan pengisian resume medis ', 1, 'Semua resume medis rawat inap yang tidak terisi lengkap', 'Jumlah rekam medis pasien pulang pada hari itu', '', 0),
+('IN057', 'Ketidakmampuan menangani BBLR 1500-2500gr', 1, 'Jumlah BBLR 1500 ? 2500gr dengan usia kehamilan ? 32 minggu yang tidak berhasil ditangani', 'Jumlah BBLR 1500 ? 2500gr dengan usia kehamilan ? 32 minggu yang ditangani', '', 0),
+('IN058', 'Ketidaktersediannya obat TB paru kategori 1 & 2', 1, 'Jumlah pasien yang tidak mendapatkan obat TB', 'Jumlah seluruh pasien yang mendapatkan pengobatan pada hari itu.', '>', 90),
+('IN059', 'Linen hilang', 1, 'Jumlah linen yang hilang', 'Jumlah seluruh linen dalam bulan tersebut', '', 0),
+('IN060', 'Manajemen Penggunaan Sumber Daya', 1, 'Jumlah keterlambatan waktu menangani kerusakan alat', 'Jumlah seluruh laporan kerusakan alat dalam bulan tersebut', '', 0),
+('IN061', 'Pasien pasca apendictomy dengan hasil PA normal', 1, 'Jumlah seluruh pa normal pada pasien pasca appendictomy', 'Jumlah seluruh pemeriksaan pa pada pasien pasca appendictomy pada hari itu', '', 0),
+('IN062', 'Pasien pulang APS', 1, 'Jumlah pasien pulang APS', 'Jumlah seluruh pasien yang dirawat pada hari itu', '', 0),
+('IN063', 'Pasien yang kembali ke instalasi pelayanan intensif (ICU) dengan kasus yang sama < 72 jam', 1, 'Jumlah pasien yang kembali ke instalasi pelayanan intensif (ICU) dengan kasus yang sama < 72 jam', 'Jumlah seluruh pasien yang di rawat di instalasi pelayanan intensif (ICU) pada hari itu', '', 0),
+('IN064', 'Pelayanan pemeriksaan laboratorium > 140 menit', 1, 'Jumlah  pemeriksaan laboratorium  > 140 menit', 'Jumlah seluruh pemeriksaan lab pada hari itu', '', 0),
+('IN065', 'Pemeriksaan laboratorium yang diulang', 1, 'Jumlah pemeriksaan laboratorium yang diulang', 'Jumlah seluruh pemeriksaan laboratorium', '', 0),
+('IN066', 'Pemeriksaan ulang radiologi', 1, 'Jumlah pemeriksaan ulang radiologi per bulan', 'Jumlah pasien yang dilakukan pemeriksaan radiologi pada bulan tersebut', '', 0),
+('IN067', 'Penanganan pasien tuberkulosis yang tidak sesuai dengan strategi DOTS (Directly Observed Treatment Shortcourse) ', 1, 'Jumlah semua pasien tuberkulosis yang tidak ditangani sesuai dengan strategi DOTS', 'Jumlah seluruh pasien tuberkulosis yang ditangani dalam bulan tersebut', '', 0),
+('IN068', 'Pengiriman hasil ekspertise dari laboratorium lebih dari 3 hari dan ada kesalahan ekspertise dari kontrak klinis laboratorium', 1, 'Jumlah pengiriman hasil ekspertise dari laboratorium lebih dari 3 hari dan ada kesalahan ekspertise dari kontrak klinis laboratorium', 'Jumlah seluruh pemeriksaan laboratorium yang dirujuk ke luar.', '', 0),
+('IN069', 'Peningkatan mutu penaganan kasus infeksi secara multi disiplin dan terintegrasi', 1, 'Jumlah kasus infeksi yang ditangani multi disiplin dan terintegrasi', 'Jumlah seluruh kasus infeksi yang berat', '', 0),
+('IN070', 'Penolakan ekspertise pasien TB', 1, 'Jumlah penolakan expertise', 'Jumlah seluruh pelayanan di radiologi pada hari tersebut', '', 0),
+('IN071', 'Penundaan operasi elektif', 1, 'Jumlah pasien yang waktu jadwal operasinya berubah', 'Jumlah pasien operasi elektif', '', 0),
+('IN072', 'Penurunan angka infeksi rumah sakit yang disebabkan oleh mikroba resisten', 1, 'Jumlah pasien yang klinisnya membaik setelah pemberian antibiotik berdasarkan kultur resisten obat.', 'Seluruh jumlah pasien yang hasil kulturnya ada mikroba resisten', '', 0),
+('IN073', 'Perawatan bayi dengan metude kangguru pada bayi BBLR', 1, 'Jumlah bayi yang dilakukan KMC', 'Jumlah bayi BBLR saat itu', '', 0),
+('IN074', 'Perbaikan kualitas', 1, 'Jumlah pasien yang memakai antibotik yang tidak berkualitas', 'Jumlah seluruh pasien yang memakai antibiotik', '', 0),
+('IN075', 'Perbaikan kuantitas antibiotik', 1, 'Jumlah pasien yang memakai antibiotik yang berlebihan', 'Jumlah seluruh pasien yang memakai antibiotik', '', 0),
+('IN076', 'Pneumonia akibat pemakaian ventilator (ventilator Associated Pneumonia/VAP)', 1, 'Jumlah VAP atau pneumonia yang terjadi akibat pemasangan ventilator per hari', 'Jumlah hari pemakaian ETT pada bulan tersebut', '', 0),
+('IN077', 'Proporsi pasien TB paru terkonfirmasi bakteriologis diantara terduga TB', 1, 'Jumlah seluruh pasien terdiagnosa TB terkonfirmasi bakteriologis', 'Jumlah seluruh pasien terduga TB yang melakukan pemeriksaan dahak mikroskopis pada bulan tersebut.', '', 0),
+('IN078', 'Respon time pengambilan limbah medis > 1 bulan', 1, 'Respontime pengambilan limbah medis seminggu 2 kali', 'Total jadwal pengambilan rutin dalam 1 bulan ( diisi 8)', '', 0),
+('IN079', 'Respon time pengiriman barang > 7x24 jam', 1, 'Respon time pengiriman barang  > 7x24 jam', 'Jumlah seluruh pesanan air minum dalam periode tersebut', '', 0),
+('IN080', 'Success rate', 1, 'Jumlah semua pasien yang pengobatannya telah selesai sesuai program', 'Jumlah seluruh pasien tuberkulosis yang ditangani dalam hari tersebut', '', 0),
+('IN081', 'Tidak ada gangguan jaringan internet', 1, 'Jumlah gangguan internet yang ditangani cepat', 'Jumlah seluruh gangguan internet pada hari itu', '>', 90),
+('IN082', 'Tidak ada insiden budaya keselamatan', 1, 'Angka kejadian terkait budaya keselamatan', '100', '', 0),
+('IN083', 'Tidak ada insiden terkait dengan pengadaan dan penggunaan teknologi medis dan obat baru', 1, 'Jumlah insiden terkait teknologi medis dan obat baru', 'Jumlah teknologi medis dan alat baru', '', 0),
+('IN084', 'Tidak ada kejadian kehilangan', 1, 'Jumlah kasus kehilangan pada hari itu', 'Jumlah seluruh kendaan bermotor yang parkir  di area rumah sakit', '', 0),
+('IN085', 'Tidak ada kejadian keracunan makanan', 1, 'Jumlah kasus keracunan makanan', 'Jumlah seluruh pembeli pada saat terjadi kasus keracunan makanan ', '', 0),
+('IN086', 'tidak ada keterlambatan pengambilan limbah domestik', 1, 'Ketepatan waktu pengambilan', '100', '', 0),
+('IN087', 'Tidak ada komplain dari pasien ataupun karyawan mengenai AC yang panas', 1, 'Total komplain tentang AC yang panas', 'Total seluruh jadwal pemeliharaan AC', '', 0),
+('IN088', 'Tidak ada ruangan kotor', 1, 'Total komplain ruangan kotor', 'Total area yang dibersihkan', '', 0),
+('IN089', 'Tidak adanya kesalahan hasil laboratorium', 1, 'Jumlah  hasil laboratorium yang salah', 'Jumlah seluruh pemeriksaan laboratorium pada hari itu', '', 0),
+('IN090', 'Tidak adanya pembelian obat terlebih dahulu sebelum pasien ditangani', 1, 'Jumlah pasien gawat, darurat, dan gawat darurat yang mendapatkan pelayanan kegawat daruratannya tidak ada pembelian obat terlebih dulu', 'Jumlah seluruh pasien gawat, darurat, gawat darurat yang mendapatkan pelayanan kegawatdaruratan di rumah sakit', '', 0),
+('IN091', 'Tidak adanya penarikan downpayment', 1, 'Jumlah pasien gawat, darurat, dan gawat darurat yang mendapatkan pelayanan kegawat daruratannya tidak ada penarikan downpayment', 'Jumlah seluruh pasien gawat, darurat, gawat darurat yang mendapatkan pelayanan kegawatdaruratan di rumah sakit', '', 0),
+('IN092', 'Tidak dilakukannya penandaan lokasi operasi', 1, 'Jumlah kejadian tidak dilakukkanya penandaan lokasi operasi pada semua kasus operasi yang harus dilakukan penandaan lokasi per bulan', 'Jumlah semua kasus operasi yang dilakukan penandaan lokasi operasi dalam satu bulan', '', 0),
+('IN093', 'Tidak terisinya angket kepuasan pasien rawat inap', 1, 'Jumlah angket kepuasan yang tidak kembali atau tidak terisi', 'Jumlah angket kepuasan yang dibagikan dalam satu hari (20 angket)', '', 0),
+('IN094', 'Trend 10 besar diagnose dan data demografi ', 1, 'Elemen diagnosa yang dilaporkan', 'Seluruh elemen yang wajib dilaporkan = 10', '', 0),
+('IN095', 'Waktu lapor hasil tes kritis laboratorium', 1, 'Jumlah pemeriksaan laboratorium kritis yang dilaporkan < 30 menit', 'Jumlah seluruh pemeriksaan laboratorium kritis', '', 0),
+('IN096', 'Waktu tunggu rawat jalan', 1, 'Jumlah kumulatif waktu tunggu pasien rawat jalan yang disurvey > 60 menit', 'Jumlah seluruh pasien rawat jalan yang disurvey', '', 0);
 
 -- --------------------------------------------------------
 
@@ -187,23 +312,26 @@ CREATE TABLE `master_menu` (
   `nama_menu` varchar(50) NOT NULL,
   `url` varchar(100) NOT NULL,
   `aktif` tinyint(1) NOT NULL,
-  `urutan` int(11) NOT NULL
+  `urutan` int(11) NOT NULL,
+  `icon` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_menu`
 --
 
-INSERT INTO `master_menu` (`idparent`, `idmenu`, `nama_menu`, `url`, `aktif`, `urutan`) VALUES
-(0, 1, 'Master Data', '#', 1, 2),
-(1, 2, 'Dokter', 'dokter', 1, 1),
-(1, 3, 'Indikator', 'indikator', 1, 2),
-(0, 4, 'Input', '#', 1, 3),
-(4, 5, 'Input Indikator', 'input_indikator', 1, 1),
-(0, 6, 'Admin', '#', 1, 1),
-(6, 7, 'Manajemen User', 'admin/user', 1, 1),
-(6, 8, 'Penganturan Akses', 'admin/user_akses', 1, 3),
-(6, 9, 'Group Akses', 'admin/group_akses', 1, 2);
+INSERT INTO `master_menu` (`idparent`, `idmenu`, `nama_menu`, `url`, `aktif`, `urutan`, `icon`) VALUES
+(0, 1, 'Master Data', '#', 1, 2, 'fas fa-database'),
+(1, 2, 'Dokter', 'dokter', 1, 1, ''),
+(1, 3, 'Indikator', 'indikator', 1, 3, ''),
+(0, 4, 'Input', '#', 1, 3, 'fas fa-feather-alt'),
+(4, 5, 'Input Indikator', 'input_indikator', 1, 1, ''),
+(0, 6, 'Admin', '#', 1, 1, 'fas fa-user-cog'),
+(6, 7, 'Manajemen User', 'user', 1, 1, ''),
+(6, 8, 'Penganturan Akses', 'admin/user_akses', 1, 3, ''),
+(1, 10, 'Group Indikator', 'group_indikator', 1, 4, ''),
+(1, 11, 'Unit', 'unit', 1, 2, ''),
+(4, 12, 'Laporan', 'laporan', 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -257,9 +385,10 @@ CREATE TABLE `master_unit` (
 --
 
 INSERT INTO `master_unit` (`idunit`, `nama_unit`, `aktif`) VALUES
-('001', 'Poliklinik', 0),
-('002', 'IGD', 0),
-('003', 'ITRS', 0),
+('UN000', 'Administrator', 1),
+('UN001', 'Poliklinik', 0),
+('UN002', 'IGD', 0),
+('UN003', 'ITRS', 0),
 ('UN004', 'Hemodialisa', 0),
 ('UN005', 'Arrum', 0),
 ('UN006', 'Tulip', 0),
@@ -268,7 +397,8 @@ INSERT INTO `master_unit` (`idunit`, `nama_unit`, `aktif`) VALUES
 ('UN009', 'Kesling', 0),
 ('UN010', 'PPI', 0),
 ('UN011', 'Rekam Medis', 0),
-('UN012', 'Logistic', 0);
+('UN012', 'Logistic', 0),
+('UN013', 'Farmasi', 1);
 
 -- --------------------------------------------------------
 
@@ -291,8 +421,11 @@ CREATE TABLE `master_user` (
 --
 
 INSERT INTO `master_user` (`iduser`, `username`, `password`, `nama_user`, `idunit`, `idgroup`, `aktif`) VALUES
-(1, 'kresna', '$2y$10$NU10kKQx.CfSJAigxK.sr.pb5r1VcMLg3V/PrN9z/l.4ADDOhcngK', 'Kresna Mulya Wibawa', '001', 999, 1),
-(2, 'rusliai', '$2y$10$NU10kKQx.CfSJAigxK.sr.pb5r1VcMLg3V/PrN9z/l.4ADDOhcngK', 'Ayi Rusli ', '002', 999, 1);
+(1, 'kresna', '$2y$10$NU10kKQx.CfSJAigxK.sr.pb5r1VcMLg3V/PrN9z/l.4ADDOhcngK', 'Kresna Mulya Wibawa', 'UN003', 999, 1),
+(2, 'rusliai', '$2y$10$NU10kKQx.CfSJAigxK.sr.pb5r1VcMLg3V/PrN9z/l.4ADDOhcngK', 'Ayi Rusli ', 'UN000', 999, 1),
+(3, 'fatma', '$2y$10$gx6/tV7eUW1BILtKIEuTxerUsVuz9izq9TxdD6xDibZfmEuR4riSq', 'Fatmawati', 'UN010', 2, 1),
+(4, 'diana', '$2y$10$py6peyy/mTe5iMf/.BvhPutrXg4bzSDtezglnoJ6FxDIQtsI/5rye', 'Diana', 'UN013', 2, 1),
+(5, 'zahra', '$2y$10$gfOe.t/SlYAMBE.yti8KmeIESq8T1UnJvX8qS5Aavs41SWDGe7kJ.', 'zahra', 'UN005', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -313,7 +446,8 @@ CREATE TABLE `user_group` (
 --
 
 INSERT INTO `user_group` (`idgroup`, `nama_group`, `keterangan`, `aktif`, `urutan`) VALUES
-(2, 'Perawat', 'untuk perawat', 1, 2),
+(2, 'Medis', 'untuk perawat', 1, 2),
+(3, 'Non Medis', 'User Non Medis', 1, 3),
 (999, 'Administrator', 'hanya admin', 1, 1);
 
 -- --------------------------------------------------------
@@ -334,26 +468,42 @@ CREATE TABLE `user_group_detail` (
 --
 
 INSERT INTO `user_group_detail` (`nourut`, `idgroup`, `idmenu`, `aktif`) VALUES
-(1, 999, 1, 1),
-(2, 999, 2, 1),
-(3, 999, 3, 1),
-(4, 999, 4, 1),
-(5, 999, 5, 1),
-(7, 999, 6, 1),
-(8, 999, 7, 1),
-(9, 999, 8, 1),
-(10, 999, 9, 1),
-(22, 2, 1, 1);
+(40, 999, 2, 1),
+(41, 999, 3, 1),
+(42, 999, 10, 1),
+(43, 999, 11, 1),
+(44, 999, 5, 1),
+(45, 999, 12, 1),
+(48, 999, 1, 1),
+(49, 999, 4, 1),
+(50, 999, 6, 1),
+(51, 999, 7, 1),
+(52, 999, 8, 1),
+(53, 2, 4, 1),
+(54, 2, 5, 1),
+(55, 2, 12, 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `group_indikator`
+--
+ALTER TABLE `group_indikator`
+  ADD PRIMARY KEY (`nourut`);
+
+--
 -- Indexes for table `indikator_mutu`
 --
 ALTER TABLE `indikator_mutu`
   ADD PRIMARY KEY (`idtrx`);
+
+--
+-- Indexes for table `instansi`
+--
+ALTER TABLE `instansi`
+  ADD PRIMARY KEY (`idinstansi`);
 
 --
 -- Indexes for table `master_dokter`
@@ -408,22 +558,28 @@ ALTER TABLE `user_group_detail`
 --
 
 --
+-- AUTO_INCREMENT for table `group_indikator`
+--
+ALTER TABLE `group_indikator`
+  MODIFY `nourut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
 -- AUTO_INCREMENT for table `indikator_mutu`
 --
 ALTER TABLE `indikator_mutu`
-  MODIFY `idtrx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `idtrx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `master_menu`
 --
 ALTER TABLE `master_menu`
-  MODIFY `idmenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idmenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `master_user`
 --
 ALTER TABLE `master_user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_group`
@@ -435,7 +591,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_group_detail`
 --
 ALTER TABLE `user_group_detail`
-  MODIFY `nourut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `nourut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

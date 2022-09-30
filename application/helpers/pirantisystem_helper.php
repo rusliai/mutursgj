@@ -62,20 +62,7 @@ function tab()
 {
 	echo "\t";
 }
-function options($src, $id, $ref_val, $text_field)
-{
-	$options = '';
-	foreach ($src->result() as $row) {
-		$opt_value	= $row->$id;
-		$text_value	= $row->$text_field;
-		if ($row->$id == $ref_val) {
-			$options .= '<option value="' . $opt_value . '" selected>' . $text_value . '</option>';
-		} else {
-			$options .= '<option value="' . $opt_value . '">' . $text_value . '</option>';
-		}
-	}
-	return $options;
-}
+
 function tgl_indo($tgl)
 {
 	$tanggal = substr($tgl, 8, 2);

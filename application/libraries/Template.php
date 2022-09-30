@@ -8,6 +8,7 @@ class Template
 		$this->_ci = &get_instance();
 		$this->_ci->load->model('admin/Menu_model', 'menu');
 		$this->_ci->load->model('Auth_model', 'auth');
+		$this->_ci->load->model('admin/Instansi_model', 'instansi');
 		$this->_ci->load->helper('pirantisystem');
 	}
 	function display($content, $data = array())
@@ -17,6 +18,7 @@ class Template
 		}
 
 		$idgroup = $this->_ci->session->userdata('id_grup');
+		$data['instansi'] =  $this->_ci->instansi->get_instansi();
 		$data['menu'] =  $this->_ci->menu->get_menu_by_grup($idgroup);
 		$data['_header'] = $this->_ci->load->view('_partials/header', $data, TRUE);
 		$data['_content'] = $this->_ci->load->view($content, $data, true);
