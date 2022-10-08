@@ -133,6 +133,9 @@
                                 </div>
                                 <div class="col align-self-end">
                                     <div class="form-group row m-1">
+                                        <input type="hidden" id="cariIdIndikator" name="cariIdIndikator" class="form-control form-control-sm col-sm-1">
+                                        <input type="text" id="cariNamaIndikator" name="cariNamaIndikator" class="form-control form-control-sm col-sm-4" placeholder="Cari Indikator">
+                                        
                                         <?php echo input_select_bulan("list_bulan", date('m')) ?>
                                         &nbsp; &nbsp;
                                         <?php echo input_select_tahun("list_tahun", date('Y')) ?>
@@ -331,7 +334,13 @@
     let namaDokter = document.getElementById('namaDokter');
     let genIdDokter = document.getElementById('genIdDokter');
     let genNamaDokter = document.getElementById('genNamaDokter');
+    let cariIdIndikator = document.getElementById('cariIdIndikator');
+    let cariNamaIndikator = document.getElementById('cariNamaIndikator');
+
     let idIndikator = document.getElementById('idIndikator');
+
+
+
     let namaIndikator = document.getElementById('namaIndikator');
     let labelNumerator = document.getElementById('labelNumerator');
     let labelDenominator = document.getElementById('labelDenominator');
@@ -398,6 +407,8 @@
             minLength: 3,
         });
         $("#namaIndikator").autocomplete("option", "appendTo", "#formInputIndikator");
+
+
         $("#namaDokter").autocomplete({
             source: function(request, response) {
                 jQuery.get(base_url + "dokter/cariDokter/", {
@@ -425,11 +436,14 @@
             minLength: 3,
         })
         $("#namaDokter").autocomplete("option", "appendTo", "#formInputIndikator");
+
+
         namaDokter.addEventListener("keyup", (event) => {
             if (namaDokter.value == '') {
                 idDokter.value = '';
             }
         });
+
         $("#genNamaDokter").autocomplete({
             source: function(request, response) {
                 jQuery.get(base_url + "dokter/cariDokter/", {
@@ -456,13 +470,60 @@
             },
             minLength: 3,
         })
+
         $("#genNamaDokter").autocomplete("option", "appendTo");
         genNamaDokter.addEventListener("keyup", (event) => {
             if (genNamaDokter.value == '') {
                 genIdDokter.value = '';
             }
         });
+
+
+
+        
+        $("#cariNamaIndikator").autocomplete({
+            source: function(request, response) {
+                jQuery.get(base_url + "indikator/cariIndikatorunit/", {
+                    param: $("#cariNamaIndikator").val()
+                }, function(data) {
+                    pesanError.innerHTML = "";
+                    if ($.trim(data) == null || $.trim(data) == undefined || $.trim(data) == "") {
+                        Swal.fire("Nama Indikator tidak tersedia pada unit anda! ")
+
+                       
+                        return false;
+                    } else {
+                        response($.map(JSON.parse(data), function(item) {
+                            return {
+                                label: item.nama_indikator,
+                                value: item.idindikator,
+                            }
+                        }));
+                    }
+                });
+            },
+            select: function(event, ui) {
+                cariNamaIndikator.value = ui.item.label;
+                cariIdIndikator.value = ui.item.value;
+                return false;
+            },
+            minLength: 3,
+        })
+
+        $("#cariNamaIndikator").autocomplete("option", "appendTo");
+        cariNamaIndikator.addEventListener("keyup", (event) => {
+            if (cariNamaIndikator.value == '') {
+                cariIdIndikator.value = '';
+            }
+        });
+
+
+
+
+
     });
+
+
     var getDaysInMonth = function(month, year) {
         return new Date(year, month, 0).getDate();
     };
@@ -672,7 +733,8 @@
         }
     }
     function tampilRekap() {
-        let param = `tahun=${inputTahun.value}&bulan=${inputBulan.value}`;
+        let param = `tahun=${inputTahun.value}&bulan=${inputBulan.value}&idindikator=${cariIdIndikator.value}`;
+
         let hari = getDaysInMonth(inputBulan.value, inputTahun.value);
         let kolomhari = document.getElementById('kolomhari');
         xhr.onreadystatechange = callback;
@@ -906,8 +968,8 @@
                          <div class="card card-sm mt-1 ">
                             <div class="card-header bg-gradient-success text-white">
                                 <h5>${value.nama_indikator.toUpperCase()}</h5>
-                                <smal>${value.nama_dokter}</smal> <br>
-                                <small>Dibuat tanggal : ${value.tgl_dibuat}</small> 
+                                <smal class="badge badge-danger">${value.nama_dokter}</smal> <br>
+                                <small>Dibuat tanggal : ${new Date(value.tgl_dibuat).toLocaleDateString('id-ID',{year: 'numeric', month: 'long', day: 'numeric'})}</small> 
                                 <button onClick="fillReport(this,'print')"  
                                     class=" btn btn-warning btn-sm border border-dark"
                                     data-idindikator = "${value.idindikator}"
@@ -1019,7 +1081,7 @@
                 let dataHtmlKolom = "";
                 //looping header 
                 for (x = 1; x <= hari; x++) {
-                    dataHtmlKolom += `<td style="text-align: center;">${x}</td>`;
+                    dataHtmlKolom += `<td style="text-align: center;font-weight: bolder">${x}</td>`;
                 }
                 // colSpanHari.setAttribute("colspan", hari);
                 kolomhari.innerHTML = dataHtmlKolom;
@@ -1028,15 +1090,15 @@
 
                     htmlTable +=
                         `<table class="table table-sm  table-borderless">
-                                        <tr style="height:3cm">
+                                        <tr style="height:5cm">
                                         	<td colspan="${4 + hari}">
                                                 <div class="row">
                                                 <div class="col-2">
                                                     <img src="<?php echo base_url() ?>assets/img/logo.png" width="70" height="70" />
                                                 </div>
                                                 <div class="col-8">
-                                                    <h3>FORM MONITORING ${ value.nama_indikator.toUpperCase()}</h3> 
-                                                    <h5>${ value.nama_dokter.toUpperCase()}</h5> 
+                                                    <h4>FORM MONITORING ${ value.nama_indikator.toUpperCase()} ${ value.nama_dokter.toUpperCase()}</h4> 
+                                                 
                                                         <span>
                                                           Unit / Ruang :   ${value.nama_unit}
                                                         </span><br>
@@ -1050,7 +1112,7 @@
                                            
                                         <tr class="border-detail">
                                                 <td rowspan="2" style="font-weight: bolder;">No</td>
-                                                <td rowspan="2"  style="font-weight: bolder;width: 22%;">Parameter</td>
+                                                <td rowspan="2"  style="font-weight: bolder;min-width: 300px;">Parameter</td>
                                                 <td colspan="${hari}" style="font-weight: bolder;">Tanggal</td>
                                                 <td rowspan="2" style="font-weight: bolder;">Total</td>
                                                 <td rowspan="2" style="font-weight: bolder;">%</td>
@@ -1105,16 +1167,17 @@
                             </tr>
                             <tr>
                                 <td colspan="${4 + hari}" style="height:1cm">
+                                <hr>
                                 <b>Analisa :  </b> <p>${value.analisa.uraian_analisa}</p>
                                 <b>Tindak Lanjut :  </b> <p>${value.analisa.uraian_tindak_lanjut}</p>
-                                <small>Tanggal dibuat: ${value.analisa.tgl_dibuat}  </small> / 
-                                <small>Tanggal Diperbaharui : ${value.analisa.tgl_update}  </small>
-                               
+                                <small>Tanggal dibuat: ${new Date(value.analisa.tgl_dibuat).toLocaleDateString('id-ID',{year: 'numeric', month: 'long', day: 'numeric'})}  </small> / 
+                                <small>Tanggal Diperbaharui : ${new Date(value.analisa.tgl_update).toLocaleDateString('id-ID',{year: 'numeric', month: 'long', day: 'numeric'})}</small>
+                              
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="${4 + hari}" style="height:5mm">
-                               <hr>
+                                <hr>
                                 </td>
                             </tr>
                             <tr>
@@ -1216,7 +1279,7 @@
             window.frames["frame1"].focus();
             window.frames["frame1"].print();
             preview.removeChild(frame1);
-        }, 500);
+        }, 10);
         return false;
     }
 

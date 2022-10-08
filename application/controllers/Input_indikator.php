@@ -41,19 +41,16 @@ class Input_indikator extends CI_Controller
 	{
 		$bulan = $this->input->get('bulan');
 		$tahun = $this->input->get('tahun');
-
-		if((!isset($bulan)) || (!isset($tahun)))
-		{
+		if ((!isset($bulan)) || (!isset($tahun))) {
 			$bulan = date('m');
 			$tahun = date('Y');
 		}
-		$param = [	
-			'bulan' =>  $bulan, 
-			'tahun' =>  $tahun, 
-			'idunit' => $this->session->userdata('user_unit')];
-
+		$param = [
+			'bulan' =>  $bulan,
+			'tahun' =>  $tahun,
+			'idunit' => $this->session->userdata('user_unit')
+		];
 		$getdata  = $this->analisa->get_list_analisa($param);
-	
 		if ($getdata->num_rows() > 0) {
 			$data = [
 				'status' => true,
@@ -102,7 +99,6 @@ class Input_indikator extends CI_Controller
 			echo json_encode(['status' => false, 'message' => 'Gagal']);
 		};
 	}
-
 	public function add_all_indikator($tgl = '', $iddokter = '')
 	{
 		$unit = $this->session->userdata('user_unit');
@@ -164,26 +160,28 @@ class Input_indikator extends CI_Controller
 			echo json_encode(['status' => false, 'message' => 'Gagal']);
 		};
 	}
-
 	public function getRekap()
 	{
 		$bulan = $this->input->get('bulan');
 		$tahun = $this->input->get('tahun');
 		$unit =  $this->session->user_unit;
 		$data_row = [];
-
 		if ($this->input->get('tipe') && $this->input->get('tipe') == 'all') {
 			$param = [
 				'MONTH(tanggal)' =>  intval($bulan),
 				'YEAR(tanggal)' => intval($tahun),
 			];
-
 		} else {
-
-			if($this->input->get('tipe') == 'perunit'){
-				
-				if($this->input->get('idindikator')){
-					if($this->input->get('iddokter')){
+			if ($this->input->get('tipe') == 'perunit') {
+				if ($this->input->get('idindikator')) {
+					if (!$this->input->get('iddokter')) {
+						$param = [
+							'MONTH(tanggal)' =>  intval($bulan),
+							'YEAR(tanggal)' => intval($tahun),
+							'indikator_mutu.idunit' => $this->input->get('idunit'),
+							'indikator_mutu.idindikator' => $this->input->get('idindikator'),
+						];
+					} else {
 						$param = [
 							'MONTH(tanggal)' =>  intval($bulan),
 							'YEAR(tanggal)' => intval($tahun),
@@ -191,70 +189,58 @@ class Input_indikator extends CI_Controller
 							'indikator_mutu.idindikator' => $this->input->get('idindikator'),
 							'indikator_mutu.iddokter' => $this->input->get('iddokter')
 						];
-					}else{
-						$param = [
-							'MONTH(tanggal)' =>  intval($bulan),
-							'YEAR(tanggal)' => intval($tahun),
-							'indikator_mutu.idunit' => $this->input->get('idunit'),
-							'indikator_mutu.idindikator' => $this->input->get('idindikator'),
-						];
 					}
-					
-				}else{
+				} else {
 					$param = [
 						'MONTH(tanggal)' =>  intval($bulan),
 						'YEAR(tanggal)' => intval($tahun),
 						'indikator_mutu.idunit' => $this->input->get('idunit'),
 					];
 				}
-
-			}else{
-				$param = [
-					'MONTH(tanggal)' =>  intval($bulan),
-					'YEAR(tanggal)' => intval($tahun),
-					'indikator_mutu.idunit' => $unit
-				];
+			} else {
+				if (!$this->input->get('idindikator')) {
+					$param = [
+						'MONTH(tanggal)' =>  intval($bulan),
+						'YEAR(tanggal)' => intval($tahun),
+						'indikator_mutu.idunit' => $unit,
+					];
+				} else {
+					$param = [
+						'MONTH(tanggal)' =>  intval($bulan),
+						'YEAR(tanggal)' => intval($tahun),
+						'indikator_mutu.idunit' => $unit,
+						'indikator_mutu.idindikator' => $this->input->get('idindikator')
+					];
+				}
 			}
 		}
-
 		$data = $this->indikator->getRekap($param)->result_array();
-		
-
 		foreach ($data as $value) {
-
 			$dataanalisa = $this->analisa->analisa_by_param([
-												'idindikator' =>$value['idindikator'],
-												'iddokter' =>$value['iddokter'],
-												'idunit' =>$unit,
-												'bulan' =>intval($bulan),
-												'tahun' =>intval($tahun),
-											 ]);
-
-			if($dataanalisa->num_rows() > 0 ){
+				'idindikator' => $value['idindikator'],
+				'iddokter' => $value['iddokter'],
+				'idunit' => $unit,
+				'bulan' => intval($bulan),
+				'tahun' => intval($tahun),
+			]);
+			if ($dataanalisa->num_rows() > 0) {
 				$value['analisa'] = $dataanalisa->row();
-			}else{
+			} else {
 				$value['analisa'] = [];
-			}		
-
-
+			}
+			$value['detail'] = $this->indikator->getRekapDetail($param)->result_array();
 			$param['idindikator'] = $value['idindikator'];
 			$param['iddokter'] = $value['iddokter'];
-			$detail = $this->indikator->getRekapDetail($param)->result_array();
-			$value['detail'] = $detail;
-			
+			$value['detail'] = $this->indikator->getRekapDetail($param)->result_array();
 			$data_row[] = $value;
 		}
 		echo json_encode($data_row);
 	}
-
-
-	public function getDetailAnalsia($idtrx){
+	public function getDetailAnalsia($idtrx)
+	{
 		$detail = $this->analisa->analisa_by_trx($idtrx);
 		if ($detail) {
 			echo json_encode($detail);
 		}
 	}
-
-	
-	
 }
