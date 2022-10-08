@@ -264,22 +264,29 @@
             </div>
             <div class="modal-body bg-gradient-light">
                 <div class="analisaDeskripsi">
-                    <div id='judulAnalisa'></div>
-                    <div id='analisaNumerator'></div>
-                    <div id='analisaDenominator'></div>
-                    <div id='analisaStandar'></div>
-                    <div id='analisaCapaian'></div>
+                    <table>
+                        <tr>
+                            <td>Indikator</td><td>:</td><td> <div id='judulAnalisa'></div></td> </tr>
+                        <tr><td>Numerator</td><td>:</td><td> <div id='analisaNumerator'></div> </td></tr>
+                        <tr><td>Denominator</td><td>:</td><td>   <div id='analisaDenominator'></td></div> </tr>
+                        <tr><td>Standar</td><td>:</td> <td> <div id='analisaStandar'></div> </td></tr>
+                        <tr><td>Pencapaian</td><td>:</td><td>  <div id='analisaCapaian'></div></td></tr>
+                    </table>
+
                 </div>
                 <!-- form isian analisa  -->
                 <form id="formInputAnalisa">
                     <div class="form-group ">
-                        <input type="text" id="statusTrxAnalisa" disabled>
+                        <input type="hidden" id="statusTrxAnalisa" placeholder="status"disabled>
                     </div>
                     <div class="form-group ">
-                        <input type="text" id="idTrxAnalisa" disabled>
+                        <input type="hidden" id="idTrxAnalisa"  placeholder="idtrx" disabled>
                     </div>
                     <div class="form-group ">
-                        <input type="text" id="idIndikatorAnalisa" disabled>
+                        <input type="hidden" id="idIndikatorAnalisa" placeholder="id indikator"disabled>
+                    </div>
+                    <div class="form-group ">
+                        <input type="hidden" id="idDokterAnalisa"  placeholder="id dokter" disabled>
                     </div>
                     <div class="form-group ">
                         <label class="col-form-label ">Analisa</label>
@@ -301,6 +308,10 @@
             </div>
         </div>
     </div>
+</div>
+<div id="printArea" style="display: none;">
+</div>
+<div id="preview" style="display: none;">
 </div>
 <script>
     var base_url = "<?php echo base_url() ?>";
@@ -326,6 +337,7 @@
     let labelDenominator = document.getElementById('labelDenominator');
     let numerator = document.getElementById('numerator');
     let denominator = document.getElementById('denominator');
+    const tabelRekapIndikator = document.getElementById('tabelRekapIndikator');
     const dataRekap = document.getElementById('dataRekap');
     const btnTampilRekap = document.getElementById('btnTampilRekap');
     const inputBulan = document.getElementById('list_bulan');
@@ -338,6 +350,7 @@
     const statusTrxAnalisa = document.getElementById('statusTrxAnalisa');
     const idTrxAnalisa = document.getElementById('idTrxAnalisa');
     const idIndikatorAnalisa = document.getElementById('idIndikatorAnalisa');
+    const idDokterAnalisa = document.getElementById('idDokterAnalisa');
     const judulAnalisa = document.getElementById('judulAnalisa');
     const analisaNumerator = document.getElementById('analisaNumerator');
     const analisaDenominator = document.getElementById('analisaDenominator');
@@ -346,6 +359,11 @@
     const uraianAnalisa = document.getElementById('uraianAnalisa');
     const uralainTl = document.getElementById('uralainTl');
     const ketAnalisa = document.getElementById('ketAnalisa');
+    //laporan 
+    var preview = document.getElementById('preview');
+    var printHeader = document.getElementById('printHeader');
+    var printArea = document.getElementById('printArea');
+    var printFooter = document.getElementById('printFooter');
     document.addEventListener("DOMContentLoaded", () => {
         getListTanggal();
         setTimeout(tampilRekap, 1000);
@@ -483,15 +501,29 @@
     }
     function newFormAnalisa(data) {
         let dataIndikator = data.dataset;
+
+      
         //cek dulu inputan analisa sudah ada atau belum
         idIndikatorAnalisa.value = dataIndikator.idindikator;
-        judulAnalisa.innerHTML = `<h3>${dataIndikator.namaindikator}</h3>`;
-        analisaNumerator.innerHTML = `<p><b>Numerator : </b> ${dataIndikator.labelnumerator} (<b>${dataIndikator.total_numerator}</b>)</p>`;
-        analisaDenominator.innerHTML = `<p><b>Denominator : </b>${dataIndikator.labeldenominator} ( <b>${dataIndikator.total_denominator}</b>) </p>`;
-        analisaStandar.innerHTML = `<p><b>Standar Mutu : </b>${dataIndikator.standar}</p>`;
-        analisaCapaian.innerHTML = `<p><b>Total Pencapaian : </b>${dataIndikator.persen}</p>`;
-        let tersedia = true;
-        if (tersedia) {
+        idDokterAnalisa.value = dataIndikator.iddokter;
+
+        //Kolom Rangkumana Indikator 
+
+        judulAnalisa.innerHTML = `${dataIndikator.namaindikator} - ${dataIndikator.namadokter}`;
+        analisaNumerator.innerHTML = `${dataIndikator.labelnumerator} ${dataIndikator.total_numerator}`;
+        analisaDenominator.innerHTML = `${dataIndikator.labeldenominator} ${dataIndikator.total_denominator}`;
+        analisaStandar.innerHTML = `${dataIndikator.standar}`;
+        analisaCapaian.innerHTML = `${dataIndikator.persen}`;
+
+       
+        if (!dataIndikator.idanalisa=="") {
+            statusTrxAnalisa.value = 'update'
+            idTrxAnalisa.value = dataIndikator.idanalisa;
+            uraianAnalisa.value =dataIndikator.uraian_analisa;
+
+            uralainTl.value = dataIndikator.uraian_tindak_lanjut;
+            ketAnalisa.value =dataIndikator.keterangan;
+
         } else {
             statusTrxAnalisa.value = 'add'
             idTrxAnalisa.value = '';
@@ -569,6 +601,7 @@
             };
             var data = {
                 idindikator: idIndikatorAnalisa.value,
+                iddokter: idDokterAnalisa.value,
                 bulan: list_bulan.value,
                 tahun: list_tahun.value,
                 analisa: uraianAnalisa.value,
@@ -584,6 +617,7 @@
                 showConfirmButton: false,
                 timer: 1500
             })
+            tampilRekap() 
         } else {
             xhr.open("POST", base_url + "input_indikator/update_analisa/" + idTrxAnalisa.value, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -594,6 +628,7 @@
             };
             var data = {
                 idindikator: idIndikatorAnalisa.value,
+                iddokter: idDokterAnalisa.value,
                 bulan: list_bulan.value,
                 tahun: list_tahun.value,
                 analisa: uraianAnalisa.value,
@@ -609,8 +644,10 @@
                 showConfirmButton: false,
                 timer: 1500
             })
+            tampilRekap() 
         }
         $('#ModalInputAnalisa').modal('toggle');
+       
     }
     function getDetailIndikator(idtrx) {
         xhr.onreadystatechange = callback;
@@ -645,6 +682,8 @@
         function callback() {
             if (xhr.readyState == 4) {
                 const data = JSON.parse(xhr.responseText);
+
+
                 let dataHtml = "";
                 let dataHtmlKolom = "";
                 //looping header 
@@ -670,10 +709,10 @@
                                 out = val.numerator;
                                 idtrans = val.idTrx;
                             }
-                            if (x == date_num) {
-                                out = val.numerator;
-                                idtrans = val.idTrx;
-                            }
+                            // if (x == date_num) {
+                            //     out = val.numerator;
+                            //     idtrans = val.idTrx;
+                            // }
                         })
                         dataHtml += `<td onclick="getRekapDetail(this)" 
                                                         class="angka_indikator warna_numerator"
@@ -724,9 +763,32 @@
                             simbol = '';
                             break;
                     }
-                    let analisa = `<button class="btn btn-success btn-block" 
+
+                   
+
+                    let idanalisa ='';
+                    let titleAnalisa ='Analsia & Tidak lanjut';
+                    let buttonAnalisa ='btn-success';
+
+                    if((value.analisa.id_analisa !== undefined) || value.analisa.id_analisa ==""   ){
+                        titleAnalisa = "Analisa kembali";
+                        buttonAnalisa = "btn-warning";
+                        idanalisa = value.analisa.id_analisa;
+                    }
+                    
+                    
+
+                   
+                    let analisa = `<button class="btn ${buttonAnalisa} btn-block" 
                                                 style= "white-space:normal;" 
                                                 onclick ="newFormAnalisa(this)"
+                                               
+                                               
+                                                data-idanalisa="${idanalisa}"
+                                                data-uraian_analisa="${value.analisa.uraian_analisa}"
+                                                data-uraian_tindak_lanjut="${value.analisa.uraian_tindak_lanjut}"
+                                                data-keterangan="${value.analisa.keterangan}"
+                                               
                                                 data-idindikator="${value.idindikator}"
                                                 data-namaindikator="${value.nama_indikator}"
                                                 data-iddokter="${value.iddokter}"
@@ -737,7 +799,9 @@
                                                 data-total_denominator="${value.total_denominator}"
                                                 data-persen="${persen}"
                                                 data-standar="${value.standar}"
-                                                >Analsia & Tidak lanjut</button>`;
+                                                >${titleAnalisa}</button>`;
+
+
                     dataHtml += `<td rowspan="2" class="angka_indikator warna_numerator"> ${value.total_numerator} </td>
                                       <td rowspan="4" nowrap class="${warna_indikator} " style="text-align: center;vertical-align: middle;"> ${persen}%</td>
                                       <td rowspan="4" nowrap class="standar" style="text-align: center;vertical-align: middle;">${simbol} ${value.standar}% </td>
@@ -786,9 +850,9 @@
             if (xhr.readyState == 4) {
                 const data = JSON.parse(xhr.responseText);
                 if (!data.status) {
-                    Swal.fire(
-                        "Data tidak tersedia untuk tanggal : " + cariTanggal.value,
-                    );
+                    // Swal.fire(
+                    //     "Data tidak tersedia untuk tanggal : " + cariTanggal.value,
+                    // );
                     detailTabelIndikatorMutu.innerHTML = `<h3> Data tidak ditemukan</h3>`;
                     return false;
                 } else {
@@ -820,6 +884,7 @@
             }
         }
     }
+
     function getListAnalisa() {
         let param = `tahun=${inputTahunAnalisa.value}&bulan=${inputBulanAnalisa.value}`;
         xhr.onreadystatechange = callback;
@@ -829,22 +894,49 @@
         function callback() {
             if (xhr.readyState == 4) {
                 const data = JSON.parse(xhr.responseText);
+
+
                 if (!data.status) {
                     Swal.fire("Belum ada analisa");
                 } else {
                     let analisaHTML = `<div class="row">`;
                     data.data_analisa.forEach(function(value, index) {
-                        console.log(value);
                         analisaHTML += `
-                         <div class="col-md-6 col-sm-12">
+                         <div class="col-md-4 col-sm-12">
                          <div class="card card-sm mt-1 ">
                             <div class="card-header bg-gradient-success text-white">
-                                <h5>${value.nama_indikator}</h5>
-                                <small>Dibuat tanggal : ${value.tgl_dibuat}</small> <button class="btn-primary btn-sm"><i class="fa fa-print" aria-hidden="true"></i> </button>
+                                <h5>${value.nama_indikator.toUpperCase()}</h5>
+                                <smal>${value.nama_dokter}</smal> <br>
+                                <small>Dibuat tanggal : ${value.tgl_dibuat}</small> 
+                                <button onClick="fillReport(this,'print')"  
+                                    class=" btn btn-warning btn-sm border border-dark"
+                                    data-idindikator = "${value.idindikator}"
+                                    data-iddokter = "${value.iddokter}"
+                                    data-idunit = "${value.idunit}"
+                                    data-idtrx = "${value.id_analisa}"
+                                > Print
+                                <i class="fa fa-print" aria-hidden="true"></i> 
+                                </button>
+                                <button onClick="fillReport(this,'excel')" 
+                                class="btn btn-success btn-sm border border-dark" 
+                                    data-idindikator = "${value.idindikator}"
+                                    data-iddokter = "${value.iddokter}"
+                                    data-idunit = "${value.idunit}"
+                                    data-idtrx = "${value.id_analisa}"
+                                
+                                >MS Excel <i class="fas fa-file-excel"></i></button>
+                                <button onClick="fillReport(this,'word')" 
+                                class="btn btn-primary btn-sm border border-dark"
+                                data-idindikator = "${value.idindikator}"
+                                    data-iddokter = "${value.iddokter}"
+                                    data-idunit = "${value.idunit}"
+                                    data-idtrx = "${value.id_analisa}"
+
+                                >MS Word <i class="far fa-file-word"></i></button>
                             </div>
                             <div class="card-body">
-                            <b>Analisa : </b> <p>${value.uraian_analisa}</p>
-                            <b>Tindak Lanjut : </b> <p>${value.uraian_tindak_lanjut}</p>
+                            <b>Analisa : </b> <p>${value.uraian_analisa.substring(0,50)}...</p>
+                            <b>Tindak Lanjut : </b> <p>${value.uraian_tindak_lanjut.substring(0,50)}...</p>
                             </div>
                             </div>
                         </div>`
@@ -881,12 +973,276 @@
             }
         }
     }
-    function getDetailAnalsia(idtrx) {
+    function getData(url, cb) {
+        let xhttp = new XMLHttpRequest();
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        } else {
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // xhttp.onload = function () {
+        // 	return cb(this.responseText);
+        // }
+        xhttp.open("GET", url);
+        xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+        xhttp.onreadystatechange = function() {
+            // In local files, status is 0 upon success in Mozilla Firefox
+            if (xhttp.readyState === XMLHttpRequest.DONE) {
+                var status = xhttp.status;
+                if (status === 0 || (status >= 200 && status < 400)) {
+                    return cb(xhttp.responseText);
+                    // The request has been completed successfully
+                    // console.log(xhttp.responseText);
+                } else {
+                    console.log("Errors...");
+                    return cb(false);
+                }
+            }
+        };
+        xhttp.withCredentials = false;
+        xhttp.send();
+    }
+    function fillReport(input,tipe) {
+        let payload = input.dataset;
+
+
+        let param = `tahun=${list_tahun_analisa.value}&bulan=${list_bulan_analisa.value}&tipe=perunit&idunit=${payload.idunit}&idindikator=${payload.idindikator}&iddokter=${payload.iddokter}`;
+        let hari = getDaysInMonth(list_bulan_analisa.value, list_tahun_analisa.value);
+        let htmlTable = '';
         xhr.onreadystatechange = callback;
-        xhr.open('GET', base_url + "input_indikator/get_detail_indikator_mutu/" + idtrx)
+        xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
         xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
         xhr.send();
         function callback() {
+            if (xhr.readyState == 4) {
+                const data = JSON.parse(xhr.responseText);
+                let dataHtmlKolom = "";
+                //looping header 
+                for (x = 1; x <= hari; x++) {
+                    dataHtmlKolom += `<td style="text-align: center;">${x}</td>`;
+                }
+                // colSpanHari.setAttribute("colspan", hari);
+                kolomhari.innerHTML = dataHtmlKolom;
+                data.forEach(function(value, index) {
+
+
+                    htmlTable +=
+                        `<table class="table table-sm  table-borderless">
+                                        <tr style="height:3cm">
+                                        	<td colspan="${4 + hari}">
+                                                <div class="row">
+                                                <div class="col-2">
+                                                    <img src="<?php echo base_url() ?>assets/img/logo.png" width="70" height="70" />
+                                                </div>
+                                                <div class="col-8">
+                                                    <h3>FORM MONITORING ${ value.nama_indikator.toUpperCase()}</h3> 
+                                                    <h5>${ value.nama_dokter.toUpperCase()}</h5> 
+                                                        <span>
+                                                          Unit / Ruang :   ${value.nama_unit}
+                                                        </span><br>
+                                                        <span>
+                                                          Periode :   ${ list_bulan_analisa.options[list_bulan_analisa.selectedIndex].text   + " " + list_tahun_analisa.value}
+                                                        </span>
+                                                </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                           
+                                        <tr class="border-detail">
+                                                <td rowspan="2" style="font-weight: bolder;">No</td>
+                                                <td rowspan="2"  style="font-weight: bolder;width: 22%;">Parameter</td>
+                                                <td colspan="${hari}" style="font-weight: bolder;">Tanggal</td>
+                                                <td rowspan="2" style="font-weight: bolder;">Total</td>
+                                                <td rowspan="2" style="font-weight: bolder;">%</td>
+                                        </tr>`;
+                    htmlTable += `<tr class="border-detail">${kolomhari.innerHTML }</tr>`;
+                    htmlTable += `<tr class="border-detail">
+                                    <td style="font-weight: bolder;">1</td>
+                                    <td style="font-weight: bolder;">${value.numerator}</td>`;
+                    //looping  numerator
+                    for (x = 1; x <= hari; x++) {
+                        let out = "-";
+                        let idtrans = "";
+                        value.detail.forEach(function callback(val, ind) {
+                            const date = new Date(val.tanggal);
+                            const date_num = date.getDate();
+                            if (x == date_num) {
+                                out = val.numerator;
+                            }
+                            if (x == date_num) {
+                                out = val.numerator;
+                            }
+                        })
+                        htmlTable += `<td>${out}</td> 
+                                       `;
+                    }
+                    htmlTable += ` <td>${value.total_numerator}</td>
+                                    <td rowspan="2">${parseFloat(value.pencapaian).toFixed(2)} %</td>
+                                    </tr>
+                                    <tr class="border-detail">`;
+                    htmlTable += `<td style="font-weight: bolder;">2</td>
+                                  <td style="font-weight: bolder;">${value.denominator}</td>`;
+                    for (x = 1; x <= hari; x++) {
+                        let out = "-";
+                        let idtrans = "";
+                        value.detail.forEach(function callback(val, ind) {
+                            const date = new Date(val.tanggal);
+                            const date_num = date.getDate();
+                            if (x == date_num) {
+                                out = val.denominator;
+                            }
+                        })
+                        htmlTable += `<td>${out}</td> `;
+                    }
+                    htmlTable += `
+                                    <td>${value.total_denominator}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="${4 + hari}" style="height:1cm">
+                               
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="${4 + hari}" style="height:1cm">
+                                <b>Analisa :  </b> <p>${value.analisa.uraian_analisa}</p>
+                                <b>Tindak Lanjut :  </b> <p>${value.analisa.uraian_tindak_lanjut}</p>
+                                <small>Tanggal dibuat: ${value.analisa.tgl_dibuat}  </small> / 
+                                <small>Tanggal Diperbaharui : ${value.analisa.tgl_update}  </small>
+                               
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="${4 + hari}" style="height:5mm">
+                               <hr>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="${4 + hari}">
+                            
+                                    <div class="row">
+                                        <div class="col">
+                                        <span> <i> Tanggal Cetak : ${new Date().toLocaleDateString('id-ID',{year: 'numeric', month: 'long', day: 'numeric'})}</i></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                        <span>Kepala Bidang ${value.nama_bidang}</span> 
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <span> <b> ${value.ka_bidang} </b></span>
+                                        </div>
+                                        <div class="col-4">
+                                        <span>Koordinator  ${value.nama_unit} </span> 
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <span>  <b>  ${value.kepala_ruangan} </b>  </span>
+                                        </div>
+                                        <div class="col-4">
+                                        <span>PJ Mutu  ${value.nama_unit}</span> 
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <span> <b><?php echo $_SESSION['user_nama'] ?> <b> </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>`;
+                });
+            }
+            printArea.innerHTML = htmlTable;
         }
+
+
+                switch(tipe){
+                    case 'print' : 
+                        setTimeout(function() {
+                            printLaporan()
+                        }, 100);
+                    break;
+                    case 'excel' : 
+                        setTimeout(function() {
+                            exportExcel()
+                        }, 100);
+                        break;
+                        case 'word' : 
+                        setTimeout(function() {
+                            downloadInnerHtml()
+                        }, 100);
+
+
+                }
+                        
+
     }
+
+
+    function printLaporan() {
+        const style_laporan = `<link href="<?php echo base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
+                            <style>
+                                    @page {
+                                    size: A4 landscape;
+                                    }
+                                    .border-detail > td {
+                                        border: 1px solid black;
+                                    }
+                            </style>    
+                            `;
+        var frame1 = document.createElement('iframe');
+        frame1.name = "frame1";
+        frame1.style.position = "revert";
+        frame1.style.minWidth = "100%";
+        frame1.style.height = "500px";
+        frame1.style.border = "1";
+        preview.appendChild(frame1);
+        var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
+        frameDoc.document.open();
+        frameDoc.document.write('<html><head>');
+        frameDoc.document.write(style_laporan);
+        frameDoc.document.write('</head><body>');
+        frameDoc.document.write(printArea.innerHTML);
+        frameDoc.document.write('</body></html>');
+        frameDoc.document.close();
+        setTimeout(function() {
+            window.frames["frame1"].focus();
+            window.frames["frame1"].print();
+            preview.removeChild(frame1);
+        }, 500);
+        return false;
+    }
+
+    function exportExcel() {
+        var a = document.createElement('a');
+        //getting data from our div that contains the HTML table
+        var data_type = 'data:application/vnd.ms-excel';
+        var table_div = document.getElementById('printArea');
+        var table_html = table_div.innerHTML.replace(/ /g, '%20');
+        a.href = data_type + ', ' + table_html;
+        //setting the file name
+        a.download = 'download.xls';
+        //triggering the function
+        a.click();
+        //just in case, prevent default behaviour
+    }
+
+    function downloadInnerHtml() {
+        var elHtml = document.getElementById('printArea').innerHTML;
+        var link = document.createElement('a');
+        link.setAttribute('download', 'tags.doc');   
+        link.setAttribute('href', 'data:' + 'text/doc' + ';charset=utf-8,' + encodeURIComponent(elHtml));
+        link.click(); 
+        }
+
+        
+
+        
 </script>

@@ -22,8 +22,9 @@ class Unit_model extends CI_Model
         }
         public function insert_unit($data)
         {
-                $count =  $this->db->count_all_results($this->table_name, FALSE);
-                $data['idunit'] =  sprintf("UN%03d", $count + 1);
+                // $count =  $this->db->count_all_results($this->table_name, FALSE);
+                $data['idindikator'] =  sprintf("IN".strtoupper(uniqid()));
+                // $data['idunit'] =  sprintf("UN%03d", $count + 1);
                 $this->db->insert('master_unit', $data);
         }
         public function update_unit($data)

@@ -9,20 +9,35 @@ class Analisa_model extends CI_Model
                         '
                         analisa.id_analisa,
                         analisa.idindikator,
+                        analisa.iddokter,
+                        analisa.idunit,
                         analisa.bulan,
                         analisa.tahun,
                         analisa.tgl_dibuat,
                         analisa.uraian_analisa,
                         analisa.uraian_tindak_lanjut,
                         analisa.keterangan,
+                        master_dokter.nama_dokter,
                         master_indikator.* 
                                 '
                 )
                         ->from($this->_table)
                         ->join('master_indikator', 'analisa.idindikator = master_indikator.idindikator')
+                        ->join('master_dokter', 'analisa.iddokter = master_dokter.iddokter')
                         ->where($param)
                         ->get();
                 return $query;
+        }
+
+        public function analisa_by_param($param)
+        {
+                $query = $this->db->select( '*')
+                        ->from($this->_table)
+                        ->where($param)
+                        ->get();
+                if ($query) {
+                        return $query;
+                }
         }
 
         public function analisa_by_trx($trx)
@@ -31,9 +46,8 @@ class Analisa_model extends CI_Model
                         '*'
                 )
                         ->from($this->_table)
-                        // ->join('master_indikator', 'indikator_mutu.idindikator = master_indikator.idindikator', 'left')
-                        // ->join('master_dokter', 'indikator_mutu.iddokter = master_dokter.iddokter', 'left')
-                        ->where('idtrx', $trx)
+
+                        ->where('id_analisa', $trx)
                         ->get()->row();
                 if ($query) {
                         return $query;
@@ -52,17 +66,10 @@ class Analisa_model extends CI_Model
                 $data['iduser'] = $this->session->user_id;
                 $data['idunit'] = $this->session->user_unit;
                 $data['tgl_update'] = date('Y-m-d');
-                return $this->db->update($this->_table, $data, array('idtrx' => $idtrx));
+                return $this->db->update($this->_table, $data, array('id_analisa' => $idtrx));
         }
         public function delete_analsia($idtrx)
         {
-                return $this->db->where('idtrx', $idtrx)-> delete($this->_table);
-                
+                return $this->db->where('idtrx', $idtrx)->delete($this->_table);
         }
-
-        
-
-
-        
-
 }

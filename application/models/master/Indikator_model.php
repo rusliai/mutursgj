@@ -43,8 +43,8 @@ class Indikator_model extends CI_Model
         }
         public function insert_indikator($data)
         {
-                $count =  $this->db->count_all_results($this->table_name, FALSE);
-                $data['idindikator'] =  sprintf("IN%03d", $count + 1);
+                $data['idindikator'] =  sprintf("IN".strtoupper(uniqid()));
+
                 return   $this->db->insert('master_indikator', $data);
         }
         public function update_indikator($data, $id)

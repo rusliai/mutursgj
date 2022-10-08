@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "apexcharts": "^3.35.3",
+    "jsxls": "^0.1.28",
     "sweetalert2": "^11.4.18"
   }
 }

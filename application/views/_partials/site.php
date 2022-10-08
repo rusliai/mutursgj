@@ -76,10 +76,19 @@ HALAMAN UNTUK Sidebar
                     </button>
                     <!-- Topbar Search -->
                    
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                        
-                            <div class="h1"> <img src="<? echo base_url()?>assets/img/logo.png" class=" p-2 img-fluid "  width="75px" alt="Cinque Terre"><?php echo $instansi->nama_instansi?></div>
-                        </div>
+                            <div > 
+                              <img src="<? echo base_url()?>assets/img/logo.png" class=" p-2 img-fluid "  width="75px" alt="Cinque Terre">
+                             <?php echo $instansi->nama_instansi?>
+                            </div>
+                        </div> -->
+                        <nav class="navbar navbar-light ">
+                        <a class="navbar-brand" href="#">
+                            <img src="<? echo base_url()?>assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                            <?php echo $instansi->nama_instansi?>
+                        </a>
+                        </nav>
                    
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

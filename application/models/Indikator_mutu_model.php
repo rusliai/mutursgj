@@ -83,6 +83,7 @@ class Indikator_mutu_model extends CI_Model
                         '
                         indikator_mutu.idindikator,
                         indikator_mutu.iddokter,
+                        master_unit.nama_unit,
                         master_indikator.nama_indikator,
                         master_indikator.numerator,
                         master_indikator.denominator,
@@ -91,11 +92,20 @@ class Indikator_mutu_model extends CI_Model
                         master_dokter.nama_dokter,
                         sum(indikator_mutu.numerator) as total_numerator,
                         sum(indikator_mutu.denominator) as total_denominator,
+                        (sum(indikator_mutu.numerator) / sum(indikator_mutu.denominator)) * 100 as pencapaian,
+                        master_user.nama_user AS kepala_ruangan, 
+                        master_bidang.nama_bidang, 
+                        master_bidang.ka_bidang
                         ' )
                
                         ->from($this->_table)
                         ->join('master_indikator', 'indikator_mutu.idindikator = master_indikator.idindikator', 'left')
                         ->join('master_dokter', 'indikator_mutu.iddokter = master_dokter.iddokter','left')
+                        ->join('master_unit', 'indikator_mutu.idunit = master_unit.idunit','left')
+                        ->join('master_user', 'master_unit.idkoor = master_user.iduser','left')
+                        ->join('master_bidang', 'master_unit.idbidang = master_bidang.idbidang','left')
+
+                       
                         ->group_by(' indikator_mutu.idindikator')
                         ->group_by(' indikator_mutu.iddokter')
                      

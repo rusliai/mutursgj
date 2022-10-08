@@ -66,9 +66,8 @@
         <div class="table-responsive">
           <table class="table table-sm">
             <thead>
-              <th style="width: 5%;"><a href="#">ID</th>
-              <th style="width: 10%;"><a href="#">Standar Pencapaian</th>
-              <th>Grafik Harian</th>
+              <th style="width: 10%;"><a href="#">Standar</th>
+              <th>Grafik Perhari</th>
             </thead>
             <tbody id="rowDetail">
             </tbody>
@@ -104,108 +103,113 @@
       month: 'long',
     });
   }
-  function tampilRekap() {
-    let param = `tahun=${tahun}&bulan=${bulan}&tipe=perunit&idunit=${inputUnit.value}`;
-    xhr.onreadystatechange = callback;
-    xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
-    xhr.send();
-    function callback() {
-      if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText)
-        var namaindikator = [];
-        var standar = [];
-        var capaian = [];
-        data.forEach(e => {
-          namaindikator.push(e.nama_indikator.split(" "));
-          namaindikator.push(e.nama_indikator);
-          let persen = (e.total_numerator / e.total_denominator) * 100;
-          persen = parseFloat(persen).toFixed(2);
-          standar.push(e.standar)
-          capaian.push(persen)
-        });
-        var options = {
-          chart: {
-            type: 'bar',
-            height: 480
-          },
-          plotOptions: {
-            bar: {
-              horizontal: true,
-              dataLabels: {
-                position: 'bottom',
-              },
-            }
-          },
-          colors: ["#007bff"],
-          stroke: {
-            show: true,
-            width: 1,
-          },
-          tooltip: {
-            shared: true,
-            intersect: false
-          },
-          xaxis: {
-            categories: namaindikator,
-            labels: {
-              show: true,
-              formatter: function(value) {
-                return value + "%";
-              }
-            },
-          },
-          yaxis: {
-            min: 0,
-            max: 100,
-            tickAmount: 5,
-            labels: {
-              show: false,
-              // formatter: function(value) {
-              //   // return value + "%";
-              // }
-            }
-          },
-          series: [{
-              name: "Capaian",
-              data: capaian,
-            },
-            // {
-            //   name: "Standar",
-            //   data: standar
-            // },
-          ],
-          dataLabels: {
-            enabled: false,
-            style: {
-              fontSize: '12px',
-              fontWeight: 'bold',
-            },
-            formatter: function(value) {
-              return value + "%";
-            },
-            enabled: true,
-            textAnchor: 'start',
-            style: {
-              colors: ['#000000']
-            },
-            formatter: function(val, opt) {
-              return opt.w.globals.labels[opt.dataPointIndex] + " :  " + val + "%"
-            },
-            offsetX: 0,
-            dropShadow: {
-              enabled: false
-            }
-          },
-        }
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      }
-    }
-  }
+  // function tampilRekap() {
+  //   let param = `tahun=${tahun}&bulan=${bulan}&tipe=perunit&idunit=${inputUnit.value}`;
+  //   xhr.onreadystatechange = callback;
+  //   xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
+  //   xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+  //   xhr.send();
+  //   function callback() {
+  //     if (this.readyState == 4 && this.status == 200) {
+  //       let data = JSON.parse(this.responseText)
+  //       console.warn(data);
+  //       var namaindikator = [];
+  //       var standar = [];
+  //       var capaian = [];
+  //       data.forEach(e => {
+  //         namaindikator.push(e.nama_indikator.split(" "));
+  //         namaindikator.push(e.nama_indikator);
+  //         let persen = (e.total_numerator / e.total_denominator) * 100;
+  //         persen = parseFloat(persen).toFixed(2);
+  //         standar.push(e.standar)
+  //         capaian.push(persen)
+  //       });
+  //       var options = {
+  //         chart: {
+  //           type: 'bar',
+  //           height: 480
+  //         },
+  //         plotOptions: {
+  //           bar: {
+  //             horizontal: true,
+  //             dataLabels: {
+  //               position: 'bottom',
+  //             },
+  //           }
+  //         },
+  //         colors: ["#007bff"],
+  //         stroke: {
+  //           show: true,
+  //           width: 1,
+  //         },
+  //         tooltip: {
+  //           shared: true,
+  //           intersect: false
+  //         },
+  //         xaxis: {
+  //           categories: namaindikator,
+  //           labels: {
+  //             show: true,
+  //             formatter: function(value) {
+  //               return value + "%";
+  //             }
+  //           },
+  //         },
+  //         yaxis: {
+  //           min: 0,
+  //           max: 100,
+  //           tickAmount: 5,
+  //           labels: {
+  //             show: false,
+  //             // formatter: function(value) {
+  //             //   // return value + "%";
+  //             // }
+  //           }
+  //         },
+  //         series: [{
+  //             name: "Capaian",
+  //             data: capaian,
+  //           },
+  //           // {
+  //           //   name: "Standar",
+  //           //   data: standar
+  //           // },
+  //         ],
+  //         dataLabels: {
+  //           enabled: false,
+  //           style: {
+  //             fontSize: '12px',
+  //             fontWeight: 'bold',
+  //           },
+  //           formatter: function(value) {
+  //             return value + "%";
+  //           },
+  //           enabled: true,
+  //           textAnchor: 'start',
+  //           style: {
+  //             colors: ['#000000']
+  //           },
+  //           formatter: function(val, opt) {
+  //             return opt.w.globals.labels[opt.dataPointIndex] + " :  " + val + "%"
+  //           },
+  //           offsetX: 0,
+  //           dropShadow: {
+  //             enabled: false
+  //           }
+  //         },
+  //       }
+  //       var chart = new ApexCharts(document.querySelector("#chart"), options);
+  //       chart.render();
+  //     }
+  //   }
+  // }
+
+
   function tampilDetail() {
     const rowDetail = document.getElementById('rowDetail');
+
     let param = `tahun=${inputTahun.value}&bulan=${inputBulan.value}&tipe=perunit&idunit=${inputUnit.value}`;
+
     xhr.onreadystatechange = callback;
     xhr.open('GET', base_url + "input_indikator/getRekap?" + param)
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
@@ -215,16 +219,37 @@
         titleGrafik.innerHTML = `${toMonthName(bulan)} ${tahun}`;
         let data = JSON.parse(this.responseText)
         let html = '';
+
         data.forEach(e => {
+          console.warn(e);
+         
+          let persen_pencapaian = 0;
+          if (e.pencapaian == NaN || e.pencapaian == undefined) {
+            persen_pencapaian = 0;
+          } else {
+            persen_pencapaian = parseFloat(e.pencapaian).toFixed(2);
+          }
+        
           html += `<tr>
-                      <td> ${e.idindikator}</td>
-                      <td> <a href="#" style="font-size: 3rem;font-weight: bold;font-family: arial;"> ${parseFloat(e.standar).toFixed(2)}%</a></td>
-                      <td id="${e.idindikator}"> 
+                      <td> 
+                      <h5>Standar</h5>
+                        <span href="#" style="font-size: 3rem;font-weight: bold;font-family: arial;"> ${parseFloat(e.standar).toFixed(2)}%</span>
+                        <h5>Pencapaian</h5>
+                        <span href="#" style="font-size: 3rem;font-weight: bold;font-family: arial;"> ${persen_pencapaian}%</span> <br>
+                        <span><b>Numerator : </b>${e.total_numerator}</span><br>
+                        <span><b>Denominator : </b>${e.total_denominator}</span>
+                      </td>
+                      <td id="${e.idindikator+"-"+e.iddokter}"> 
                      </td>
                     </tr>`;
+
+
         });
+          
         rowDetail.innerHTML = html;
-        // looping data kemudian assign dalam tanggal;
+
+        
+
         for (let x = 0; x < data.length; x++) {
           let dataTanggal = [];
           let dataIndikator = [];
@@ -275,7 +300,7 @@
                 let angkaCapaian = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
                 return `<div class="card card-sm  text-white bg-dark " >
                 <div class="card-header">
-               <span>${item.nama_indikator} <span>
+               <span>${item.nama_indikator.toUpperCase()} <span>
                 </div>
                           <div class="card-body">
                           ${item.numerator} : <b> ${angkaNum} </b>  <br>
@@ -300,7 +325,7 @@
               curve: 'straight'
             },
             title: {
-              text: item.nama_indikator,
+              text: item.nama_indikator.toUpperCase() + "( " + item.nama_dokter.toUpperCase() + " )",
               align: 'left'
             },
             subtitle: {
@@ -318,9 +343,17 @@
               horizontalAlign: 'left'
             }
           };
-          var chart = new ApexCharts(document.getElementById(`${item.idindikator}`), options);
+          
+          var chart = new ApexCharts(document.getElementById(`${item.idindikator+"-"+item.iddokter}`), options);
           chart.render();
+
+          
         }
+
+      
+
+
+
       }
     }
   }
